@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+	@apply bg-zinc-100 px-4 pt-2 pb-16 text-black md:mx-auto md:max-w-3xl dark:bg-zinc-950 dark:text-zinc-100;
+}
+
+a {
+	@apply underline transition-colors hover:text-zinc-700 dark:hover:text-zinc-300;
+}
+
+h1 {
+	@apply text-3xl font-bold;
+}
+
+input[type='text'],
+select {
+	@apply rounded-md border-2 border-zinc-300 bg-zinc-100 p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-zinc-950 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
+}
+
+button {
+	@apply cursor-pointer rounded-md transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-800;
+}
+
+button.primary {
+	@apply rounded-md border-2 border-zinc-300 p-1 active:border-zinc-400 dark:border-zinc-800 dark:active:border-zinc-700;
+}
