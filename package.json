@@ -9,21 +9,21 @@
 	"devDependencies": {
 		"@lucide/svelte": "^0.483.0",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.16.0",
-		"@sveltejs/vite-plugin-svelte": "^5.0.0",
-		"@tailwindcss/vite": "^4.0.0",
+		"@sveltejs/kit": "^2.22.2",
+		"@sveltejs/vite-plugin-svelte": "^5.1.0",
+		"@tailwindcss/vite": "^4.1.11",
 		"dompurify": "^3.2.6",
 		"marked": "^15.0.12",
-		"mode-watcher": "^0.5.1",
-		"prettier": "^3.5.3",
-		"prettier-plugin-svelte": "^3.3.3",
-		"prettier-plugin-tailwindcss": "^0.6.11",
-		"svelte": "^5.0.0",
+		"mode-watcher": "^1.1.0",
+		"prettier": "^3.6.2",
+		"prettier-plugin-svelte": "^3.4.0",
+		"prettier-plugin-tailwindcss": "^0.6.13",
+		"svelte": "^5.34.9",
 		"svelte-adapter-bun": "^0.5.2",
-		"svelte-check": "^4.0.0",
-		"tailwindcss": "^4.0.0",
-		"typescript": "^5.0.0",
-		"vite": "^6.0.0"
+		"svelte-check": "^4.2.2",
+		"tailwindcss": "^4.1.11",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5"
 	},
 	"description": "Simple To-Do list for study, built with SvelteKit",
 	"private": false,
@@ -35,5 +35,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"svelte-sonner": "^1.0.5",
+		"zod": "^3.25.67"
+	}
 }

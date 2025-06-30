@@ -8,6 +8,7 @@
 	<div class="pages">
 		<a href="/">Task list</a>
 		<a href="/subjects">Subjects</a>
+		<a href="/backup">Backup</a>
 	</div>
 	<div>
 		<a href="https://github.com/n3tael/diary">

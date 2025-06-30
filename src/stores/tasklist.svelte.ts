@@ -5,8 +5,8 @@ export interface Task {
 	subjectId: number;
 	text: string;
 	done: boolean;
-	date: Date;
-	deadline?: Date;
+	date: string;
+	deadline?: string;
 }
 
 export const tasklist = writable<Task[]>(

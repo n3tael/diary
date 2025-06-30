@@ -10,8 +10,8 @@
 
 	let subjectId = $state(0);
 	let text = $state('');
-	let date = $state(new Date());
-	let deadline = $state<Date | undefined>(undefined);
+	let date = $state('');
+	let deadline = $state<string | undefined>(undefined);
 
 	function addTask() {
 		let newTask = {

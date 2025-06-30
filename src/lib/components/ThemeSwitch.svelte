@@ -4,7 +4,7 @@
 </script>
 
 <button class="primary" onclick={toggleMode}>
-	{#if $mode === 'light'}
+	{#if mode.current === 'light'}
 		<Sun size="16" />
 	{:else}
 		<Moon size="16" />

@@ -4,7 +4,7 @@
 	let {
 		startDate = $bindable(),
 		endDate = $bindable()
-	}: { startDate: Date; endDate?: Date } = $props();
+	}: { startDate: string; endDate?: string } = $props();
 </script>
 
 <div class="date-picker">
