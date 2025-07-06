@@ -4,7 +4,10 @@
 	import SubjectSelectOptions from './SubjectSelectOptions.svelte';
 	import DatePicker from './DatePicker.svelte';
 
-	let creating: boolean = $state<boolean>(false);
+	// show task creation form when there are no tasks
+	let creating: boolean = $state<boolean>(
+		$tasklist.length === 0 ? true : false
+	);
 
 	let form = $state<HTMLFormElement>();
 
