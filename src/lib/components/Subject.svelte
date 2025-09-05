@@ -26,36 +26,41 @@
 	}
 </script>
 
-<div class={['subject', editing ? 'editing' : null]}>
-	{#if editing}
-		<input type="text" bind:value={subject} placeholder="Subject name..." />
-	{:else}
-		<p>{subject}</p>
-	{/if}
-	<div class="ml-auto flex">
+<tr class="subject">
+	<td align="left">
+		{#if editing}
+			<input type="text" bind:value={subject} placeholder="Name" />
+		{:else}
+			{subject}
+		{/if}
+	</td>
+	<td class="actions" align="right">
 		<button
-			class={['p-1', editing ? 'active' : null]}
+			class={editing ? 'active' : null}
 			onclick={() => (editing = !editing)}
 		>
 			<Pencil size="16" />
 		</button>
-		<button onclick={() => removeSubject(subject)}><X /></button>
-	</div>
-</div>
+		<button onclick={() => removeSubject(subject)}><X size="16" /></button>
+	</td>
+</tr>
 
 <style lang="postcss">
 	@reference "../../app.css";
 
 	.subject {
-		@apply flex items-center justify-between gap-2 rounded-md border-2 border-zinc-300 p-2 pl-3 dark:border-zinc-800;
+		input[type='text'] {
+			@apply w-full rounded-none border-0 border-b-1 p-0;
+		}
 
-		&.editing {
-			button.active {
-				@apply bg-amber-400 text-black;
-			}
+		.actions {
+			button {
+				@apply p-1;
 
-			input[type='text'] {
-				@apply w-full rounded-none border-0 border-b-2 px-0;
+				&.active {
+					background-color: oklch(from var(--color-accent) l c h / 50%);
+					@apply text-black;
+				}
 			}
 		}
 	}

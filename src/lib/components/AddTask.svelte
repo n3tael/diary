@@ -58,11 +58,10 @@
 	</form>
 {:else}
 	<button
-		class="primary mt-2 ml-auto flex items-center gap-1 text-sm"
+		class="add-task"
 		onclick={() => (creating = true)}
 	>
-		<Plus size="20" />
-		<p>Add new task</p>
+		<Plus size="24" strokeWidth="1" />
 	</button>
 {/if}
 
@@ -71,5 +70,10 @@
 
 	#add-task {
 		@apply mt-2 flex flex-col gap-2 overflow-x-auto rounded-md border-2 border-dashed border-zinc-300 p-2 dark:border-zinc-800;
+	}
+
+	button.add-task {
+		background-color: oklch(from var(--color-accent) l c h / 25%);
+		@apply p-2 rounded-full appearance-none mx-auto;
 	}
 </style>

@@ -1,9 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import 'tailwindcss';
+
+@theme {
+	--font-display: "Inter", sans-serif;
+	--color-accent: var(--color-accent-blue);
+	--color-accent-blue: oklch(0.6399 0.1588 259.57);
+	--color-accent-aqua: oklch(0.8228 0.1202 205.9);
+	--color-accent-green: oklch(0.7031 0.2313 141.98);
+	--color-accent-purple: oklch(0.5732 0.2721 309.74);
+	--color-accent-pink: oklch(0.7201 0.1894 328.33);
+	--color-accent-red: oklch(0.6335 0.2319 24.98);
+	--color-dark: oklch(0.1313 0.008 285.65);
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-	@apply bg-zinc-100 px-4 pt-2 pb-16 text-black md:mx-auto md:max-w-3xl dark:bg-zinc-950 dark:text-zinc-100;
+	@apply flex flex-col gap-4 justify-center bg-white font-display px-4 pt-2 pb-16 my-2 text-black md:mx-auto md:max-w-3xl dark:bg-dark dark:text-zinc-200;
 }
 
 a {
@@ -16,7 +29,7 @@ h1 {
 
 input[type='text'],
 select {
-	@apply rounded-md border-2 border-zinc-300 bg-zinc-100 p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-zinc-950 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
+	@apply rounded-lg border-1 border-zinc-300 p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 focus:outline-0 dark:border-zinc-800 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
 }
 
 button {
@@ -24,5 +37,5 @@ button {
 }
 
 button.primary {
-	@apply rounded-md border-2 border-zinc-300 p-1 active:border-zinc-400 dark:border-zinc-800 dark:active:border-zinc-700;
+	@apply rounded-md border-1 border-zinc-300 p-1 active:border-zinc-400 dark:border-zinc-800 dark:active:border-zinc-700;
 }

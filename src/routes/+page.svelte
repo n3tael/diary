@@ -22,13 +22,6 @@
 			<Alert.Description>Add first task below.</Alert.Description>
 		</Alert.Root>
 	{:else}
-		<div class="page-header">
-			<h1>Task list</h1>
-			<div class="stats">
-				<p>{$tasklist.length} tasks</p>
-				<p>{$tasklist.filter((t) => t.done).length} done</p>
-			</div>
-		</div>
 		<div class="tasks">
 			{#each $tasklist as task}
 				<Task
@@ -48,14 +41,6 @@
 
 <style lang="postcss">
 	@reference "../app.css";
-
-	.page-header {
-		@apply mb-4 flex items-center justify-between;
-
-		.stats {
-			@apply text-xs text-zinc-400;
-		}
-	}
 
 	.tasks {
 		@apply flex flex-col gap-2;

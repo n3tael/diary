@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
-	import { ModeWatcher } from 'mode-watcher';
+	import { ModeWatcher, mode } from 'mode-watcher';
+	import { Toaster } from 'svelte-sonner';
 	import '../app.css';
 
 	let { children } = $props();
@@ -13,3 +14,4 @@
 <ModeWatcher />
 <Header />
 {@render children()}
+<Toaster theme={mode.current} />

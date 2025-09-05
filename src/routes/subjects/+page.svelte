@@ -5,24 +5,43 @@
 	import Subject from '$lib/components/Subject.svelte';
 </script>
 
-<h1 class="mb-4">Subjects</h1>
 {#if $subjects.length === 0}
 	<Alert.Root>
 		<Alert.Title>Looks empty!</Alert.Title>
 		<Alert.Description>Add your subjects below.</Alert.Description>
 	</Alert.Root>
 {/if}
-<div class="subjects">
+<!-- <div class="subjects">
 	{#each $subjects as subject}
 		<Subject bind:subject />
 	{/each}
 	<AddSubject />
-</div>
+</div> -->
+<table>
+  	<thead>
+    	<tr>
+			<th align="left">Name</th>
+			<th align="right">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each $subjects as subject}
+			<Subject {subject} />
+		{/each}
+	</tbody>
+</table>
+
 
 <style lang="postcss">
 	@reference "../../app.css";
 
-	.subjects {
-		@apply grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3;
+	table :global {
+		thead {
+			@apply border-b-1 border-zinc-300;
+		}
+
+		th, td {
+			@apply px-0.5 py-1.5;
+		}
 	}
 </style>
