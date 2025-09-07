@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@formkit/auto-animate": "^0.9.0",
 		"svelte-sonner": "^1.0.5",
 		"zod": "^3.25.67"
 	}

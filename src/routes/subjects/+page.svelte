@@ -1,8 +1,11 @@
 <script lang="ts">
-	import AddSubject from '$lib/components/AddSubject.svelte';
-	import { subjects } from '../../stores/subjects.svelte';
+	import AddSubject from '$lib/components/subjects/AddSubject.svelte';
+	import { subjects } from '$stores/subjects.svelte';
 	import * as Alert from '$lib/components/alert';
-	import Subject from '$lib/components/Subject.svelte';
+	import Subject from '$lib/components/subjects/Subject.svelte';
+	import { flip } from 'svelte/animate';
+	import { slide } from 'svelte/transition';
+	import autoAnimate from '@formkit/auto-animate';
 </script>
 
 {#if $subjects.length === 0}
@@ -11,37 +14,21 @@
 		<Alert.Description>Add your subjects below.</Alert.Description>
 	</Alert.Root>
 {/if}
-<!-- <div class="subjects">
-	{#each $subjects as subject}
-		<Subject bind:subject />
-	{/each}
-	<AddSubject />
-</div> -->
-<table>
-  	<thead>
-    	<tr>
-			<th align="left">Name</th>
-			<th align="right">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each $subjects as subject}
-			<Subject {subject} />
-		{/each}
-	</tbody>
-</table>
 
+<div class="subjects" use:autoAnimate>
+	{#each $subjects as { id, name } (id)}
+		<div class="">
+			<Subject {id} bind:name />
+		</div>
+	{/each}
+</div>
+
+<AddSubject />
 
 <style lang="postcss">
-	@reference "../../app.css";
+	@reference "$styles";
 
-	table :global {
-		thead {
-			@apply border-b-1 border-zinc-300;
-		}
-
-		th, td {
-			@apply px-0.5 py-1.5;
-		}
+	.subjects {
+		@apply flex flex-col gap-y-2;
 	}
 </style>

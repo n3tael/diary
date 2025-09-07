@@ -2,10 +2,10 @@
 	import { Pencil, X, Calendar, Minus } from '@lucide/svelte';
 	import { marked } from 'marked';
 	import DOMPurify from 'dompurify';
-	import { tasklist, type Task } from '../../stores/tasklist.svelte';
-	import { subjects } from '../../stores/subjects.svelte';
-	import SubjectSelectOptions from './SubjectSelectOptions.svelte';
-	import DatePicker from './DatePicker.svelte';
+	import { tasklist, type Task } from '$stores/tasklist.svelte';
+	import { subjects } from '$stores/subjects.svelte';
+	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
+	import DatePicker from '$lib/components/ui/DatePicker.svelte';
 
 	let {
 		taskId,
@@ -18,8 +18,10 @@
 	let editing: boolean = $state<boolean>(false);
 
 	function removeTask(taskId: number) {
-		$tasklist.splice(taskId, 1);
-		$tasklist = $tasklist;
+		tasklist.update((t) => {
+			t.splice(taskId, 1);
+			return t;
+		});
 	}
 
 	const formatDate = (date: Date): string =>
@@ -37,7 +39,9 @@
 				<SubjectSelectOptions />
 			</select>
 		{:else}
-			<p class="font-medium">{$subjects[subjectId] || '?'}</p>
+			<p class="font-medium">
+				{$subjects.find((s) => s.id === subjectId)?.name || '?'}
+			</p>
 		{/if}
 		<div class="ml-auto flex gap-1">
 			{#if !done}
@@ -63,9 +67,28 @@
 				<Minus size="16" strokeWidth="1" />
 				<p>{formatDate(new Date(deadline))}</p>
 				{#if !done}
-					{@const days_remain = (new Date(deadline).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)}
+					{@const days_remain =
+						(new Date(deadline).getTime() - new Date().getTime()) /
+						(1000 * 60 * 60 * 24)}
 					{#if days_remain <= 3}
-						<span class={["warning", days_remain > 2 ? 'blue' : days_remain > 1 ? 'yellow' : days_remain > 0 ? 'red' : 'red-bright']}>{days_remain > 0 ? `${Math.round(days_remain)} days left` : days_remain > -1 ? 'less than a day left' : 'expired'}</span>
+						<span
+							class={[
+								'warning',
+								days_remain > 2
+									? 'blue'
+									: days_remain > 1
+										? 'yellow'
+										: days_remain > 0
+											? 'red'
+											: 'red-bright'
+							]}
+						>
+							{days_remain > 0
+								? `${Math.ceil(days_remain)} days left`
+								: days_remain > -1
+									? 'less than a day left'
+									: 'expired'}
+						</span>
 					{/if}
 				{/if}
 			{/if}
@@ -74,7 +97,7 @@
 </div>
 
 <style lang="postcss">
-	@reference "../../app.css";
+	@reference "$styles";
 
 	.task {
 		@apply flex flex-col gap-1 rounded-xl border-1 border-zinc-200 p-2 pl-3 transition-opacity dark:border-zinc-800;
@@ -90,25 +113,25 @@
 		}
 
 		.footer {
-			@apply flex items-center gap-1 text-sm text-zinc-400 font-light;
+			@apply flex items-center gap-1 text-sm font-light text-zinc-400;
 
 			.warning {
-				@apply px-1.5 rounded-xl text-xs text-black dark:text-white;
+				@apply rounded-xl px-1.5 text-xs text-black dark:text-white;
 
 				&.blue {
-					background-color: oklch(from var(--color-accent) l c h / 50%);
+					background-color: oklch(from var(--color-accent) l c h / 25%);
 				}
 
 				&.yellow {
-					background-color: oklch(from var(--color-yellow-400) l c h / 50%);
+					background-color: oklch(from var(--color-yellow-400) l c h / 25%);
 				}
 
 				&.red {
-					background-color: oklch(from var(--color-accent-red) l c h / 50%);
+					background-color: oklch(from var(--color-accent-red) l c h / 25%);
 				}
 
 				&.red-bright {
-					background-color: oklch(from var(--color-accent-red) l c h / 75%);
+					background-color: oklch(from var(--color-accent-red) l c h / 50%);
 				}
 			}
 		}

@@ -1,11 +1,11 @@
 <script>
 	import { page } from '$app/state';
 	import GitHub from '$lib/icons/GitHub.svelte';
-	import { subjects } from '../../stores/subjects.svelte';
-	import { tasklist } from '../../stores/tasklist.svelte';
-	import ThemeSwitch from './ThemeSwitch.svelte';
-	
-	const links = [
+	import { subjects } from '$stores/subjects.svelte';
+	import { tasklist } from '$stores/tasklist.svelte';
+	import ThemeSwitch from '$lib/components/ui/ThemeSwitch.svelte';
+
+	const links = $derived([
 		{
 			href: '/',
 			name: 'Tasks',
@@ -20,20 +20,24 @@
 			href: '/settings',
 			name: 'Settings'
 		}
-	]
+	]);
 </script>
 
 <header>
 	<h3>Diary</h3>
 	<div class="pages">
 		{#each links as link}
-		{@const isOnThisPage = page.url.pathname === link.href}
-		<a class={isOnThisPage ? 'active' : null} href={link.href}>
-			<span>{link.name}</span>
-			{#if link.count && isOnThisPage}
-			<span class="count">{link.count}</span>
-			{/if}
-		</a>
+			{@const isOnThisPage = page.url.pathname === link.href}
+			<a
+				class={isOnThisPage ? 'active' : null}
+				href={link.href}
+				data-sveltekit-preload-code="eager"
+			>
+				<span>{link.name}</span>
+				{#if link.count && isOnThisPage}
+					<span class="count">{link.count}</span>
+				{/if}
+			</a>
 		{/each}
 	</div>
 	<div>
@@ -47,13 +51,13 @@
 </header>
 
 <style lang="postcss">
-	@reference "../../app.css";
+	@reference "$styles";
 
 	header {
 		@apply flex items-center justify-between;
 
 		a {
-			@apply no-underline hover:text-inherit p-0 transition-all font-medium;
+			@apply p-0 font-medium no-underline transition-all hover:text-inherit;
 
 			span.count {
 				@apply text-sm font-normal;
@@ -61,7 +65,7 @@
 
 			&.active {
 				background-color: oklch(from var(--color-accent) l c h / 25%);
-				@apply px-2 py-0 rounded-xl;
+				@apply rounded-xl px-2 py-0;
 			}
 		}
 

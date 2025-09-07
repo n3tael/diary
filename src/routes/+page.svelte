@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { tasklist } from '../stores/tasklist.svelte';
-	import { subjects } from '../stores/subjects.svelte';
+	import { tasklist } from '$stores/tasklist.svelte';
+	import { subjects } from '$stores/subjects.svelte';
 	import * as Alert from '$lib/components/alert';
-	import Task from '$lib/components/Task.svelte';
-	import AddTask from '$lib/components/AddTask.svelte';
+	import Task from '$lib/components/tasks/Task.svelte';
+	import AddTask from '$lib/components/tasks/AddTask.svelte';
+	import { autoAnimate } from '@formkit/auto-animate';
 </script>
 
 {#if $subjects.length === 0}
@@ -22,10 +23,10 @@
 			<Alert.Description>Add first task below.</Alert.Description>
 		</Alert.Root>
 	{:else}
-		<div class="tasks">
-			{#each $tasklist as task}
+		<div class="tasks" use:autoAnimate>
+			{#each $tasklist as task, taskId (taskId)}
 				<Task
-					taskId={$tasklist.indexOf(task)}
+					{taskId}
 					bind:text={task.text}
 					bind:subjectId={task.subjectId}
 					bind:done={task.done}
@@ -40,7 +41,7 @@
 {/if}
 
 <style lang="postcss">
-	@reference "../app.css";
+	@reference "$styles";
 
 	.tasks {
 		@apply flex flex-col gap-2;

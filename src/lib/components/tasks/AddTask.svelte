@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { Plus, X } from '@lucide/svelte';
-	import { tasklist } from '../../stores/tasklist.svelte';
-	import SubjectSelectOptions from './SubjectSelectOptions.svelte';
-	import DatePicker from './DatePicker.svelte';
+	import { tasklist } from '$stores/tasklist.svelte';
+	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
+	import DatePicker from '$lib/components/ui/DatePicker.svelte';
 
 	// show task creation form when there are no tasks
-	let creating: boolean = $state<boolean>(
-		$tasklist.length === 0 ? true : false
-	);
+	let creating: boolean = $state<boolean>($tasklist.length === 0);
 
 	let form = $state<HTMLFormElement>();
 
@@ -51,29 +49,26 @@
 				class="w-full"
 				required={true}
 				bind:value={text}
-				placeholder="Task description..."
+				placeholder="Description"
 			/>
 			<button class="primary" type="submit"><Plus /></button>
 		</div>
 	</form>
 {:else}
-	<button
-		class="add-task"
-		onclick={() => (creating = true)}
-	>
+	<button class="add-task" onclick={() => (creating = true)}>
 		<Plus size="24" strokeWidth="1" />
 	</button>
 {/if}
 
 <style lang="postcss">
-	@reference "../../app.css";
+	@reference "$styles";
 
 	#add-task {
-		@apply mt-2 flex flex-col gap-2 overflow-x-auto rounded-md border-2 border-dashed border-zinc-300 p-2 dark:border-zinc-800;
+		@apply flex flex-col gap-2 overflow-x-auto rounded-xl border-1 border-zinc-200 p-2 dark:border-zinc-800;
 	}
 
 	button.add-task {
 		background-color: oklch(from var(--color-accent) l c h / 25%);
-		@apply p-2 rounded-full appearance-none mx-auto;
+		@apply mx-auto appearance-none rounded-full p-2;
 	}
 </style>
