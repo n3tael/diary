@@ -3,8 +3,6 @@
 	import { subjects } from '$stores/subjects.svelte';
 	import * as Alert from '$lib/components/alert';
 	import Subject from '$lib/components/subjects/Subject.svelte';
-	import { flip } from 'svelte/animate';
-	import { slide } from 'svelte/transition';
 	import autoAnimate from '@formkit/auto-animate';
 </script>
 

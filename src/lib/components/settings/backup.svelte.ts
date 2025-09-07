@@ -1,8 +1,9 @@
 import { toast } from 'svelte-sonner';
 import { tasklist } from '$stores/tasklist.svelte';
-import { subjects, updateIfPossible } from '$stores/subjects.svelte';
+import { subjects } from '$stores/subjects.svelte';
 import * as z from 'zod/v4';
 import { get } from 'svelte/store';
+import { isSubjectsOldVersion, update } from '../../../utils/stores-migrate';
 
 export function load() {
 	const i = document.createElement('input');
@@ -44,10 +45,15 @@ export function load() {
 				)
 			});
 
+			let raw_backup = JSON.parse(reader.result);
 			let backup;
 
+			if (isSubjectsOldVersion(raw_backup?.subjects)) {
+				raw_backup = update(raw_backup.subjects, raw_backup.tasklist);
+			}
+
 			try {
-				backup = scheme.parse(updateIfPossible(JSON.parse(reader.result)));
+				backup = scheme.parse(raw_backup);
 			} catch (error) {
 				if (error instanceof z.ZodError) {
 					toast.error('Invalid backup file');

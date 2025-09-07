@@ -1,5 +1,7 @@
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
+import { isSubjectsOldVersion, update } from '../utils/stores-migrate';
+import { tasklist } from './tasklist.svelte';
 
 export interface Subject {
 	id: number;
@@ -10,21 +12,20 @@ function importFromLocalStorage() {
 	return JSON.parse((browser && localStorage.getItem('subjects')) || '[]');
 }
 
-export function updateIfPossible(array: any) {
-	if (array[0] && typeof array[0] === 'string') {
-		let new_array: Subject[] = [];
-		for (let item of array) {
-			new_array.push({ id: array.indexOf(item) + 1, name: item });
+export const subjects = writable<Subject[]>(
+	(() => {
+		let raw = importFromLocalStorage();
+
+		if (isSubjectsOldVersion(raw)) {
+			let updated = update(raw, get(tasklist));
+
+			tasklist.set(updated.tasklist);
+
+			return updated.subjects;
 		}
 
-		array = new_array;
-	}
-
-	return array;
-}
-
-export const subjects = writable<Subject[]>(
-	updateIfPossible(importFromLocalStorage())
+		return raw;
+	})()
 );
 
 subjects.subscribe((value) => {
