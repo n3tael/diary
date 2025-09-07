@@ -11,7 +11,7 @@
 	<title>Diary</title>
 </svelte:head>
 
-<ModeWatcher />
+<ModeWatcher defaultTheme="blue" />
 <Header />
 {@render children()}
 <Toaster theme={mode.current} />
