@@ -1,17 +1,19 @@
 {
 	"name": "diary",
-	"version": "1.0.0",
+	"version": "2.0",
 	"author": {
 		"email": "netael@proton.me",
 		"name": "n3tael",
 		"url": "https://n3tael.eu.org"
 	},
 	"devDependencies": {
+		"@formkit/auto-animate": "^0.9.0",
 		"@lucide/svelte": "^0.483.0",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.22.2",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@tailwindcss/vite": "^4.1.11",
+		"@types/node": "^24.3.1",
 		"dompurify": "^3.2.6",
 		"marked": "^15.0.12",
 		"mode-watcher": "^1.1.0",
@@ -21,9 +23,11 @@
 		"svelte": "^5.34.9",
 		"svelte-adapter-bun": "^0.5.2",
 		"svelte-check": "^4.2.2",
+		"svelte-sonner": "^1.0.5",
 		"tailwindcss": "^4.1.11",
 		"typescript": "^5.8.3",
-		"vite": "^6.3.5"
+		"vite": "^6.3.5",
+		"zod": "^4.1.5"
 	},
 	"description": "Simple To-Do list for study, built with SvelteKit",
 	"private": false,
@@ -35,10 +39,5 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
-	"type": "module",
-	"dependencies": {
-		"@formkit/auto-animate": "^0.9.0",
-		"svelte-sonner": "^1.0.5",
-		"zod": "^3.25.67"
-	}
+	"type": "module"
 }
