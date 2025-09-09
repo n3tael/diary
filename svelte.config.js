@@ -13,7 +13,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$stores: 'src/stores',
-			$styles: 'src/app.css'
+			$styles: 'src/app.css',
+			$utils: 'src/utils'
 		}
 	}
 };

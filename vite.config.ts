@@ -14,7 +14,7 @@ const getCommit = async () => {
 
 const getBranch = async () => {
 	if (process.env.CF_PAGES_BRANCH) return process.env.CF_PAGES_BRANCH;
-	
+
 	return (await readFile('.git/HEAD', 'utf-8'))?.split('/')[2]?.trim();
 };
 

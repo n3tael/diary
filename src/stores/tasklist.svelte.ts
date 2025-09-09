@@ -2,6 +2,7 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
 export interface Task {
+	id: number;
 	subjectId: number;
 	text: string;
 	done: boolean;

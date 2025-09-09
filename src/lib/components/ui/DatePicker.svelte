@@ -6,11 +6,16 @@
 		endDate = $bindable()
 	}: { startDate: string; endDate?: string } = $props();
 
-	const setStartDateToday = () => startDate = (new Date()).toISOString().split('T')[0];
+	const setStartDateToday = () =>
+		(startDate = new Date().toISOString().split('T')[0]);
 </script>
 
 <div class="date-picker">
-	<button class="icon" onclick={setStartDateToday} aria-label="Set today as start date">
+	<button
+		class="icon"
+		onclick={setStartDateToday}
+		aria-label="Set today as start date"
+	>
 		<Calendar size="16" />
 	</button>
 	<input type="date" required bind:value={startDate} />
@@ -30,7 +35,7 @@
 		@apply flex w-max items-center gap-2 rounded-md border-2 border-zinc-200 text-sm dark:border-zinc-800;
 
 		.icon {
-			@apply bg-zinc-200 p-2 dark:bg-zinc-800 rounded-none;
+			@apply rounded-none bg-zinc-200 p-2 dark:bg-zinc-800;
 		}
 
 		.separator {

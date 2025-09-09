@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { Plus } from '@lucide/svelte';
 	import { subjects } from '$stores/subjects.svelte';
+	import generateId from '$utils/generateId';
 
 	function addSubject() {
 		subjects.update((s) => [
 			...s,
-			{ id: (s[s.length - 1]?.id || 0) + 1, name: 'New subject' }
+			{
+				id: generateId(s.map((subject) => subject.id)),
+				name: 'New subject'
+			}
 		]);
 	}
 </script>

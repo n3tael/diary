@@ -3,7 +3,19 @@
 	import { subjects } from '$stores/subjects.svelte';
 	import * as Alert from '$lib/components/alert';
 	import Subject from '$lib/components/subjects/Subject.svelte';
-	import { autoAnimate } from '@formkit/auto-animate';
+	import type { Subject as ISubject } from '$stores/subjects.svelte';
+	import { dragHandleZone } from 'svelte-dnd-action';
+	import { flip } from 'svelte/animate';
+
+	const flipDurationMs = 300;
+
+	function handleDndConsider(e: CustomEvent<DndEvent<ISubject>>) {
+		subjects.set(e.detail.items);
+	}
+
+	function handleDndFinalize(e: CustomEvent<DndEvent<ISubject>>) {
+		subjects.set(e.detail.items);
+	}
 </script>
 
 {#if $subjects.length === 0}
@@ -13,9 +25,14 @@
 	</Alert.Root>
 {/if}
 
-<div class="subjects" use:autoAnimate>
+<div
+	class="subjects"
+	use:dragHandleZone={{ items: $subjects, flipDurationMs, dropTargetStyle: {} }}
+	onconsider={handleDndConsider}
+	onfinalize={handleDndFinalize}
+>
 	{#each $subjects as { id, name } (id)}
-		<div class="">
+		<div animate:flip={{ duration: flipDurationMs }}>
 			<Subject {id} bind:name />
 		</div>
 	{/each}

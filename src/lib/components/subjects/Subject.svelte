@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Pencil, X } from '@lucide/svelte';
+	import { GripVertical, Pencil, X } from '@lucide/svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import { tasklist } from '$stores/tasklist.svelte';
+	import { dragHandle } from 'svelte-dnd-action';
 	import { fly } from 'svelte/transition';
 
-	let { id = $bindable(), name = $bindable() }: { id: number; name: string } =
-		$props();
+	let { id, name = $bindable() }: { id: number; name: string } = $props();
 	let editing: boolean = $state<boolean>(false);
 
 	function removeSubject(id: number) {
@@ -45,7 +45,7 @@
 			>
 		{:else}
 			<input
-				class=" mr-2.5 w-full border-0! bg-zinc-100 dark:bg-zinc-900"
+				class="mr-2.5 w-full border-0! bg-zinc-100! dark:bg-zinc-900!"
 				type="text"
 				bind:value={name}
 				placeholder="Name"
@@ -56,6 +56,9 @@
 		{/if}
 	</div>
 	<div class="actions">
+		<button use:dragHandle>
+			<GripVertical size="16" />
+		</button>
 		<button
 			class={editing ? 'active' : null}
 			onclick={() => (editing = !editing)}
@@ -70,7 +73,7 @@
 	@reference "$styles";
 
 	.subject {
-		@apply flex items-center justify-between rounded-xl border-1 border-zinc-300 p-0 pl-1 transition-all dark:border-zinc-800;
+		@apply dark:bg-dark flex items-center justify-between rounded-xl border-1 border-zinc-300 bg-white pl-1 dark:border-zinc-800;
 
 		.info {
 			@apply grid w-full;

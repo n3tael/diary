@@ -19,7 +19,8 @@ export function update(subjects: any, tasklist: any) {
 // Must be called only if updating subjects
 function updateTasks(tasklist: Task[]) {
 	return tasklist.map((t) => {
-		t.deadline = t.deadline === "" ? undefined : t.deadline;
+		t.id = tasklist.indexOf(t) + 1;
+		t.deadline = t.deadline === '' ? undefined : t.deadline;
 		t.subjectId++;
 
 		return t;

@@ -3,6 +3,7 @@
 	import { tasklist } from '$stores/tasklist.svelte';
 	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
 	import DatePicker from '$lib/components/ui/DatePicker.svelte';
+	import generateId from '$utils/generateId';
 
 	// show task creation form when there are no tasks
 	let creating: boolean = $state<boolean>($tasklist.length === 0);
@@ -15,15 +16,17 @@
 	let deadline = $state<string | undefined>(undefined);
 
 	function addTask() {
-		let newTask = {
-			done: false,
-			subjectId,
-			text,
-			date,
-			deadline
-		};
-
-		tasklist.update((t) => [...t, newTask]);
+		tasklist.update((ts) => [
+			...ts,
+			{
+				id: generateId(ts.map((t) => t.id)),
+				done: false,
+				subjectId,
+				text,
+				date,
+				deadline
+			}
+		]);
 
 		creating = false;
 		if (form) form.reset();

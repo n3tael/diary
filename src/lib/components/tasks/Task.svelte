@@ -1,26 +1,31 @@
 <script lang="ts">
-	import { Pencil, X, Calendar, Minus } from '@lucide/svelte';
+	import { Pencil, X, Calendar, Minus, GripVertical } from '@lucide/svelte';
 	import { marked } from 'marked';
 	import DOMPurify from 'dompurify';
 	import { tasklist, type Task } from '$stores/tasklist.svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
 	import DatePicker from '$lib/components/ui/DatePicker.svelte';
+	import { dragHandle } from 'svelte-dnd-action';
 
 	let {
-		taskId,
+		id,
 		subjectId = $bindable(),
 		text = $bindable(),
 		done = $bindable(),
 		date = $bindable(),
 		deadline = $bindable()
-	}: { taskId: number } & Task = $props();
+	}: Task = $props();
+
 	let editing: boolean = $state<boolean>(false);
 
-	function removeTask(taskId: number) {
-		tasklist.update((t) => {
-			t.splice(taskId, 1);
-			return t;
+	function removeTask(id: number) {
+		tasklist.update((ts) => {
+			ts.splice(
+				ts.findIndex((t) => t.id === id),
+				1
+			);
+			return ts;
 		});
 	}
 
@@ -44,13 +49,16 @@
 			</p>
 		{/if}
 		<div class="ml-auto flex gap-1">
+			<button class="primary border-0" use:dragHandle>
+				<GripVertical size="16" />
+			</button>
 			{#if !done}
 				<button
-					class={['primary', 'p-1', editing ? 'active' : null]}
+					class={['primary', editing ? 'active' : null]}
 					onclick={() => (editing = !editing)}><Pencil size="16" /></button
 				>
 			{/if}
-			<button class="primary p-1" onclick={() => removeTask(taskId)}>
+			<button class="primary" onclick={() => removeTask(id)}>
 				<X size="16" />
 			</button>
 		</div>
@@ -100,7 +108,7 @@
 	@reference "$styles";
 
 	.task {
-		@apply flex flex-col gap-1 rounded-xl border-1 border-zinc-200 p-2 pl-3 transition-opacity dark:border-zinc-800;
+		@apply dark:bg-dark flex flex-col gap-1 rounded-xl border-1 border-zinc-200 bg-white p-2 pl-3 transition-opacity dark:border-zinc-800;
 
 		&.done {
 			@apply opacity-30;
@@ -108,7 +116,8 @@
 
 		&.editing {
 			button.active {
-				@apply bg-zinc-300 text-black;
+				background-color: oklch(from var(--color-accent) l c h / 50%);
+				border-color: transparent;
 			}
 		}
 

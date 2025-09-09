@@ -3,8 +3,20 @@
 	import { subjects } from '$stores/subjects.svelte';
 	import * as Alert from '$lib/components/alert';
 	import Task from '$lib/components/tasks/Task.svelte';
+	import type { Task as ITask } from '$stores/tasklist.svelte';
 	import AddTask from '$lib/components/tasks/AddTask.svelte';
-	import { autoAnimate } from '@formkit/auto-animate';
+	import { dragHandleZone } from 'svelte-dnd-action';
+	import { flip } from 'svelte/animate';
+
+	const flipDurationMs = 300;
+
+	function handleDndConsider(e: CustomEvent<DndEvent<ITask>>) {
+		tasklist.set(e.detail.items);
+	}
+
+	function handleDndFinalize(e: CustomEvent<DndEvent<ITask>>) {
+		tasklist.set(e.detail.items);
+	}
 </script>
 
 {#if $subjects.length === 0}
@@ -23,16 +35,27 @@
 			<Alert.Description>Add first task below.</Alert.Description>
 		</Alert.Root>
 	{:else}
-		<div class="tasks" use:autoAnimate>
-			{#each $tasklist as task, taskId (taskId)}
-				<Task
-					{taskId}
-					bind:text={task.text}
-					bind:subjectId={task.subjectId}
-					bind:done={task.done}
-					bind:date={task.date}
-					bind:deadline={task.deadline}
-				/>
+		<div
+			class="tasks"
+			use:dragHandleZone={{
+				items: $tasklist,
+				flipDurationMs,
+				dropTargetStyle: {}
+			}}
+			onconsider={handleDndConsider}
+			onfinalize={handleDndFinalize}
+		>
+			{#each $tasklist as task (task.id)}
+				<div animate:flip={{ duration: flipDurationMs }}>
+					<Task
+						id={task.id}
+						bind:text={task.text}
+						bind:subjectId={task.subjectId}
+						bind:done={task.done}
+						bind:date={task.date}
+						bind:deadline={task.deadline}
+					/>
+				</div>
 			{/each}
 		</div>
 	{/if}
