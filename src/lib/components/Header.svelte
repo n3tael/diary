@@ -1,26 +1,38 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/state';
 	import GitHub from '$lib/icons/GitHub.svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import { tasklist } from '$stores/tasklist.svelte';
 	import ThemeSwitch from '$lib/components/ui/ThemeSwitch.svelte';
+	import { Spring } from 'svelte/motion';
 
-	const links = $derived([
+	let tasksCount = new Spring(0);
+	let subjectsCount = new Spring(0);
+
+	const links = ([
 		{
 			href: '/',
 			name: 'Tasks',
-			count: $tasklist.length
+			count: tasksCount
 		},
 		{
 			href: '/subjects',
 			name: 'Subjects',
-			count: $subjects.length
+			count: subjectsCount
 		},
 		{
 			href: '/settings',
 			name: 'Settings'
 		}
 	]);
+
+	tasklist.subscribe(t => tasksCount.set(t.length));
+	subjects.subscribe(n => subjectsCount.set(n.length));
+
+	function modulo(n: number, m: number) {
+		// handle negative numbers
+		return ((n % m) + m) % m;
+	}
 </script>
 
 <header>
@@ -35,7 +47,12 @@
 			>
 				<span>{link.name}</span>
 				{#if link.count && isOnThisPage}
-					<span class="count">{link.count}</span>
+					<div class="count-view">
+					<div class="count" style="transform: translate(0, -{100 * modulo(link.count.current, 1)}%)">
+						<span>{Math.floor(link.count.current)}</span>
+						<span class="-bottom-full">{Math.floor(link.count.current + 1)}</span>
+					</div>
+					</div>
 				{/if}
 			</a>
 		{/each}
@@ -56,21 +73,29 @@
 	header {
 		@apply flex items-center justify-between;
 
-		a {
-			@apply p-0 font-medium no-underline transition-all hover:text-inherit;
-
-			span.count {
-				@apply text-sm font-normal;
-			}
-
-			&.active {
-				background-color: oklch(from var(--color-accent) l c h / 25%);
-				@apply rounded-xl px-2 py-0;
-			}
-		}
-
 		.pages {
 			@apply flex gap-4;
+
+			a {
+				@apply p-0 flex gap-1 items-center font-medium no-underline transition-all hover:text-inherit;
+
+				.count-view {
+					@apply h-5 text-center overflow-hidden;
+
+					.count {
+						@apply w-full h-full;
+					}
+
+					span {
+						@apply flex items-center justify-center text-sm font-normal;
+					}
+				}
+
+				&.active {
+					background-color: oklch(from var(--color-accent) l c h / 25%);
+					@apply rounded-xl px-2 py-0;
+				}
+			}
 		}
 
 		h3 {
