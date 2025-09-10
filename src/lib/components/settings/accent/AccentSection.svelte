@@ -11,7 +11,7 @@
 	<div class="flex gap-1">
 		{#each themes as color}
 			<button
-				class={[theme.current === color ? 'active' : null]}
+				class:active={theme.current === color}
 				onclick={() => setTheme(color)}
 				style={`background-color:var(--color-accent-${color})`}
 				aria-label={color}

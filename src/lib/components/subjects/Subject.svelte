@@ -56,7 +56,7 @@
 		{/if}
 	</div>
 	<div class="actions">
-		<button use:dragHandle>
+		<button class="text-zinc-500" use:dragHandle>
 			<GripVertical size="16" />
 		</button>
 		<button

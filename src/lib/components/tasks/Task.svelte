@@ -49,7 +49,7 @@
 			</p>
 		{/if}
 		<div class="ml-auto flex gap-1">
-			<button class="primary border-0" use:dragHandle>
+			<button class="px-1 text-zinc-500" use:dragHandle>
 				<GripVertical size="16" />
 			</button>
 			{#if !done}

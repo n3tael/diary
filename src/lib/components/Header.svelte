@@ -29,7 +29,7 @@
 		{#each links as link}
 			{@const isOnThisPage = page.url.pathname === link.href}
 			<a
-				class={isOnThisPage ? 'active' : null}
+				class:active={isOnThisPage}
 				href={link.href}
 				data-sveltekit-preload-code="eager"
 			>
