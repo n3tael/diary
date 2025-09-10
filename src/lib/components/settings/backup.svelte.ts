@@ -30,6 +30,7 @@ export function load() {
 			const scheme = z.object({
 				tasklist: z.array(
 					z.object({
+						id: z.number(),
 						subjectId: z.number(),
 						text: z.string(),
 						done: z.boolean(),

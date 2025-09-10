@@ -5,11 +5,12 @@
 	import { tasklist } from '$stores/tasklist.svelte';
 	import ThemeSwitch from '$lib/components/ui/ThemeSwitch.svelte';
 	import { Spring } from 'svelte/motion';
+	import { goto } from '$app/navigation';
 
 	let tasksCount = new Spring(0);
 	let subjectsCount = new Spring(0);
 
-	const links = ([
+	const links = [
 		{
 			href: '/',
 			name: 'Tasks',
@@ -24,7 +25,7 @@
 			href: '/settings',
 			name: 'Settings'
 		}
-	]);
+	];
 
 	tasklist.subscribe(t => tasksCount.set(t.length));
 	subjects.subscribe(n => subjectsCount.set(n.length));
@@ -33,7 +34,24 @@
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
+
+	function handleNavigationByArrows(e: KeyboardEvent) {
+		if ((<HTMLInputElement>e.target).tagName === "INPUT") return;
+		if (!e.ctrlKey || e.code !== "ArrowLeft" && e.code !== "ArrowRight") return;
+		
+		console.log("HELLO");
+		switch (e.code) {
+			case "ArrowLeft":
+				goto(links[links.findIndex(l => l.href === page.url.pathname) !== 0 ? links.findIndex(l => l.href === page.url.pathname) - 1 : links.length-1].href);
+				break;
+			case "ArrowRight":
+				goto(links[links.findIndex(l => l.href === page.url.pathname) !== links.length-1 ? links.findIndex(l => l.href === page.url.pathname) + 1 : 0].href);
+				break;
+		}
+	}
 </script>
+
+<svelte:window onkeydown={handleNavigationByArrows} />
 
 <header>
 	<h3>Diary</h3>
