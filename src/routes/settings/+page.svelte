@@ -1,6 +1,7 @@
 <script lang="ts">
-	import AccentSection from '$lib/components/settings/accent/AccentSection.svelte';
+	import AccentSection from '$lib/components/settings/AccentSection.svelte';
 	import BackupSection from '$lib/components/settings/BackupSection.svelte';
+	import ResetSection from '$lib/components/settings/ResetSection.svelte';
 	import BuildInfoSection from '$lib/components/settings/BuildInfoSection.svelte';
 </script>
 
@@ -9,6 +10,10 @@
 
 <h2 class="section-name">Backup</h2>
 <BackupSection />
+
+<h2 class="section-name">Danger zone</h2>
+<ResetSection />
+
 <hr />
 <BuildInfoSection />
 
