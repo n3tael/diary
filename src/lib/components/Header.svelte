@@ -27,8 +27,8 @@
 		}
 	];
 
-	tasklist.subscribe(t => tasksCount.set(t.length));
-	subjects.subscribe(n => subjectsCount.set(n.length));
+	tasklist.subscribe((t) => tasksCount.set(t.length));
+	subjects.subscribe((n) => subjectsCount.set(n.length));
 
 	function modulo(n: number, m: number) {
 		// handle negative numbers
@@ -36,16 +36,17 @@
 	}
 
 	function handleNavigationByArrows(e: KeyboardEvent) {
-		if ((<HTMLInputElement>e.target).tagName === "INPUT") return;
-		if (!e.ctrlKey || e.code !== "ArrowLeft" && e.code !== "ArrowRight") return;
-		
-		console.log("HELLO");
+		if ((<HTMLInputElement>e.target).tagName === 'INPUT') return;
+		if (!e.ctrlKey || (e.code !== 'ArrowLeft' && e.code !== 'ArrowRight'))
+			return;
+
+		const linkIndex = links.findIndex((l) => l.href === page.url.pathname);
 		switch (e.code) {
-			case "ArrowLeft":
-				goto(links[links.findIndex(l => l.href === page.url.pathname) !== 0 ? links.findIndex(l => l.href === page.url.pathname) - 1 : links.length-1].href);
+			case 'ArrowLeft':
+				goto(links[linkIndex !== 0 ? linkIndex - 1 : links.length - 1].href);
 				break;
-			case "ArrowRight":
-				goto(links[links.findIndex(l => l.href === page.url.pathname) !== links.length-1 ? links.findIndex(l => l.href === page.url.pathname) + 1 : 0].href);
+			case 'ArrowRight':
+				goto(links[linkIndex !== links.length - 1 ? linkIndex + 1 : 0].href);
 				break;
 		}
 	}
@@ -66,10 +67,16 @@
 				<span>{link.name}</span>
 				{#if link.count && isOnThisPage}
 					<div class="count-view">
-					<div class="count" style="transform: translate(0, -{100 * modulo(link.count.current, 1)}%)">
-						<span>{Math.floor(link.count.current)}</span>
-						<span class="-bottom-full">{Math.floor(link.count.current + 1)}</span>
-					</div>
+						<div
+							class="count"
+							style="transform: translate(0, -{100 *
+								modulo(link.count.current, 1)}%)"
+						>
+							<span>{Math.floor(link.count.current)}</span>
+							<span class="-bottom-full"
+								>{Math.floor(link.count.current + 1)}</span
+							>
+						</div>
 					</div>
 				{/if}
 			</a>
@@ -95,13 +102,13 @@
 			@apply flex gap-4;
 
 			a {
-				@apply p-0 flex gap-1 items-center font-medium no-underline transition-all hover:text-inherit;
+				@apply flex items-center gap-1 p-0 font-medium no-underline transition-all hover:text-inherit;
 
 				.count-view {
-					@apply h-5 text-center overflow-hidden;
+					@apply h-5 overflow-hidden text-center;
 
 					.count {
-						@apply w-full h-full;
+						@apply h-full w-full;
 					}
 
 					span {

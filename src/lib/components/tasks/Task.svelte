@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { Pencil, X, Calendar, Minus, GripVertical } from '@lucide/svelte';
 	import { marked } from 'marked';
 	import DOMPurify from 'dompurify';
 	import { tasklist, type Task } from '$stores/tasklist.svelte';
 	import { subjects } from '$stores/subjects.svelte';
+	import { Pencil, X, Calendar, Minus, GripVertical } from '@lucide/svelte';
+	import { dragHandle } from 'svelte-dnd-action';
 	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
 	import DatePicker from '$lib/components/ui/DatePicker.svelte';
-	import { dragHandle } from 'svelte-dnd-action';
+	import Checkbox from '$lib/components/ui/Checkbox.svelte';
+	import Tooltip from '$lib/components/ui/Tooltip.svelte';
 
 	let {
 		id,
@@ -38,7 +40,7 @@
 
 <div class={['task', done ? 'done' : null, editing ? 'editing' : null]}>
 	<div class="flex w-full items-center gap-2">
-		<input type="checkbox" disabled={editing} bind:checked={done} />
+		<Checkbox disabled={editing} bind:checked={done} />
 		{#if editing}
 			<select bind:value={subjectId}>
 				<SubjectSelectOptions />
@@ -49,18 +51,25 @@
 			</p>
 		{/if}
 		<div class="ml-auto flex gap-1">
-			<button class="px-1 text-zinc-500" use:dragHandle>
+			<button
+				class="px-1 text-zinc-500"
+				use:dragHandle
+				ondrag={() => (editing = false)}
+			>
 				<GripVertical size="16" />
 			</button>
 			{#if !done}
-				<button
+				<Tooltip
 					class={['primary', editing ? 'active' : null]}
-					onclick={() => (editing = !editing)}><Pencil size="16" /></button
+					onclick={() => (editing = !editing)}
+					tip="Edit"
 				>
+					<Pencil size="16" />
+				</Tooltip>
 			{/if}
-			<button class="primary" onclick={() => removeTask(id)}>
+			<Tooltip class="primary" onclick={() => removeTask(id)} tip="Remove">
 				<X size="16" />
-			</button>
+			</Tooltip>
 		</div>
 	</div>
 	{#if editing}
@@ -114,8 +123,8 @@
 			@apply opacity-30;
 		}
 
-		&.editing {
-			button.active {
+		&.editing :global {
+			.active {
 				background-color: oklch(from var(--color-accent) l c h / 50%);
 				border-color: transparent;
 			}

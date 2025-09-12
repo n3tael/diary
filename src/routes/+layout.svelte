@@ -14,4 +14,4 @@
 <ModeWatcher defaultTheme="blue" disableTransitions={false} />
 <Header />
 {@render children()}
-<Toaster theme={mode.current} />
+<Toaster theme={mode.current} position="top-center" closeButton={true} />

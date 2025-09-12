@@ -1,17 +1,20 @@
 <script lang="ts">
 	function reset() {
-        const c = confirm("Are you sure to reset all data?")
-        if (c) {
-            window.localStorage.clear();
-            location.href = '/';
-        }
-    }
+		const c = confirm('Are you sure to reset all data?');
+		if (c) {
+			window.localStorage.clear();
+			location.href = '/';
+		}
+	}
 </script>
 
 <section>
 	<div class="info">
 		<h4>Reset all data</h4>
-		<p>That include tasks, subjects, settings. Make sure you have backup before continue.</p>
+		<p>
+			That include tasks, subjects, settings. Make sure you have backup before
+			continue.
+		</p>
 	</div>
 	<button onclick={reset}>Reset</button>
 </section>
@@ -35,7 +38,7 @@
 		}
 
 		button {
-			@apply bg-red-500 dark:bg-red-600 text-white rounded-xl px-2 py-1 border-2 border-red-400 dark:border-red-500 hover:bg-red-600 dark:hover:bg-red-700;
+			@apply rounded-xl border-2 border-red-400 bg-red-500 px-2 py-1 text-white hover:bg-red-600 dark:border-red-500 dark:bg-red-600 dark:hover:bg-red-700;
 		}
 	}
 </style>

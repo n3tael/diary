@@ -13,6 +13,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.1.1",
 		"@tailwindcss/vite": "^4.1.13",
 		"@types/node": "^24.3.1",
+		"bits-ui": "^2.9.7",
 		"dompurify": "^3.2.6",
 		"marked": "^15.0.12",
 		"mode-watcher": "^1.1.0",
@@ -39,5 +40,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@fontsource/inter": "^5.2.6"
+	}
 }

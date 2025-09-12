@@ -4,6 +4,7 @@
 	import { tasklist } from '$stores/tasklist.svelte';
 	import { dragHandle } from 'svelte-dnd-action';
 	import { fly } from 'svelte/transition';
+	import Tooltip from '$lib/components/ui/Tooltip.svelte';
 
 	let { id, name = $bindable() }: { id: number; name: string } = $props();
 	let editing: boolean = $state<boolean>(false);
@@ -59,13 +60,16 @@
 		<button class="text-zinc-500" use:dragHandle>
 			<GripVertical size="16" />
 		</button>
-		<button
+		<Tooltip
 			class={editing ? 'active' : null}
 			onclick={() => (editing = !editing)}
+			tip="Edit"
 		>
 			<Pencil size="16" />
-		</button>
-		<button onclick={() => removeSubject(id)}><X size="16" /></button>
+		</Tooltip>
+		<Tooltip onclick={() => removeSubject(id)} tip="Remove">
+			<X size="16" />
+		</Tooltip>
 	</div>
 </div>
 
@@ -88,7 +92,7 @@
 			}
 		}
 
-		.actions {
+		.actions :global {
 			@apply flex gap-1 p-2;
 
 			button {
