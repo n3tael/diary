@@ -14,7 +14,6 @@
 	--color-accent-purple: oklch(0.5732 0.2721 309.74);
 	--color-accent-pink: oklch(0.7201 0.1894 328.33);
 	--color-accent-red: oklch(0.6335 0.2319 24.98);
-	--color-accent-gray: oklch(0.7 0 0);
 	--color-dark: oklch(0.1313 0.008 285.65);
 }
 
@@ -63,10 +62,6 @@ h1 {
 input[type='text'],
 select {
 	@apply dark:bg-dark rounded-lg border-1 border-zinc-300 bg-white p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 focus:outline-0 dark:border-zinc-800 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
-}
-
-input[type='checkbox'] {
-	@apply accent-accent;
 }
 
 button {

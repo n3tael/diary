@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { setTheme, theme } from 'mode-watcher';
 	import { themes } from '$lib/themes';
+	import { customAccentColor } from '$stores/custom-accent';
+	import Tooltip from '$lib/components/ui/Tooltip.svelte';
+
+	let customAccentColorInput: HTMLInputElement;
 </script>
 
 <section>
@@ -10,21 +14,33 @@
 	</div>
 	<div class="flex gap-1">
 		{#each themes as color}
-			<button
-				class:active={theme.current === color}
-				onclick={() => setTheme(color)}
-				style={`background-color:var(--color-accent-${color})`}
-				aria-label={color}
-			>
-			</button>
+			<!-- svelte-ignore a11y_consider_explicit_label -->
+			<Tooltip
+				tip={color}
+				class={theme.current === color ? 'active' : null}
+				onclick={() => {
+					setTheme(color);
+					if (color === 'custom') customAccentColorInput.click();
+				}}
+				style={color !== 'custom'
+					? `background-color:var(--color-accent-${color})`
+					: `background-color:${$customAccentColor}`}
+			></Tooltip>
 		{/each}
+		<input
+			bind:this={customAccentColorInput}
+			type="color"
+			class="hidden"
+			onclick={() => setTheme('custom')}
+			bind:value={$customAccentColor}
+		/>
 	</div>
 </section>
 
 <style lang="postcss">
 	@reference "$styles";
 
-	section {
+	section :global {
 		@apply my-3 flex items-center justify-between;
 
 		.info {
@@ -40,14 +56,10 @@
 		}
 
 		button {
-			@apply rounded-full p-3;
+			@apply rounded-full p-3 transition-none;
 
 			&.active {
-				@apply p-1;
-				&::after {
-					@apply flex items-center;
-					content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-check-icon%20lucide-check%22%3E%3Cpath%20d%3D%22M20%206%209%2017l-5-5%22%2F%3E%3C%2Fsvg%3E');
-				}
+				@apply dark:border-dark outline-accent border-2 border-white px-2.5 py-2 outline-2;
 			}
 		}
 	}

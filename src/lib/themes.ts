@@ -5,5 +5,5 @@ export const themes = [
 	'purple',
 	'pink',
 	'red',
-	'gray'
+	'custom'
 ];
