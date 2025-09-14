@@ -7,6 +7,8 @@
 	import AddTask from '$lib/components/tasks/AddTask.svelte';
 	import { dragHandleZone } from 'svelte-dnd-action';
 	import { flip } from 'svelte/animate';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	const flipDurationMs = 300;
 
@@ -17,22 +19,28 @@
 	function handleDndFinalize(e: CustomEvent<DndEvent<ITask>>) {
 		tasklist.set(e.detail.items);
 	}
+
+	if (
+		browser &&
+		!localStorage.getItem('subjects') &&
+		!localStorage.getItem('tasklist')
+	)
+		goto('/setup/introduce');
 </script>
 
 {#if $subjects.length === 0}
 	<Alert.Root>
-		<Alert.Title>Hello!</Alert.Title>
-		<Alert.Description>
-			To get started, add all your subjects on <a href="/subjects"
-				>the subjects page</a
-			> and then you can add your tasks.
-		</Alert.Description>
+		<Alert.Title>No subjects added</Alert.Title>
+		<Alert.Description
+			>Add your subjects on <a href="/subjects">this page</a> or
+			<a href="/setup/intro">run the setup</a>.</Alert.Description
+		>
 	</Alert.Root>
 {:else}
 	{#if $tasklist.length === 0}
 		<Alert.Root>
-			<Alert.Title>Looks empty!</Alert.Title>
-			<Alert.Description>Add first task below.</Alert.Description>
+			<Alert.Title>No tasks here yet</Alert.Title>
+			<Alert.Description>Add a new task to get started.</Alert.Description>
 		</Alert.Root>
 	{:else}
 		<div

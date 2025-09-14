@@ -9,7 +9,7 @@
 </script>
 
 <Checkbox.Root
-	class="inline-flex size-5 items-center justify-center border-1 border-zinc-300 hover:bg-transparent! not-disabled:hover:border-zinc-400 disabled:cursor-default! dark:border-zinc-700"
+	class="inline-flex size-5 items-center justify-center rounded-md border-1 border-zinc-300 hover:bg-transparent! not-disabled:hover:border-zinc-400 disabled:cursor-default! dark:border-zinc-700"
 	bind:checked
 	{...restProps}
 >

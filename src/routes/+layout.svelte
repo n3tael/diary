@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-	import { ModeWatcher, mode, theme } from 'mode-watcher';
-	import { Toaster } from 'svelte-sonner';
-	import '../app.css';
+	import '$styles';
+
+	import { ModeWatcher, theme } from 'mode-watcher';
 	import { customAccentColor } from '$stores/custom-accent';
 
 	let { children } = $props();
@@ -21,6 +20,4 @@
 </svelte:head>
 
 <ModeWatcher defaultTheme="blue" disableTransitions={false} />
-<Header />
 {@render children()}
-<Toaster theme={mode.current} position="top-center" closeButton={true} />

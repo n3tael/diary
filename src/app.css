@@ -65,9 +65,9 @@ select {
 }
 
 button {
-	@apply cursor-pointer rounded-md transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-800;
+	@apply cursor-pointer;
 }
 
 button.primary {
-	@apply rounded-md border-1 border-zinc-300 p-1 active:border-zinc-400 dark:border-zinc-800 dark:active:border-zinc-700;
+	@apply rounded-md border-1 border-zinc-300 p-1 transition-colors hover:bg-zinc-300 active:border-zinc-400 dark:border-zinc-800 dark:hover:bg-zinc-800 dark:active:border-zinc-700;
 }

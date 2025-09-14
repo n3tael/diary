@@ -20,8 +20,10 @@
 
 {#if $subjects.length === 0}
 	<Alert.Root>
-		<Alert.Title>Looks empty!</Alert.Title>
-		<Alert.Description>Add your subjects below.</Alert.Description>
+		<Alert.Title>Your subject list is empty</Alert.Title>
+		<Alert.Description
+			>Add your subjects below to continue use app.</Alert.Description
+		>
 	</Alert.Root>
 {/if}
 
