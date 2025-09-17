@@ -4,6 +4,7 @@ import { subjects } from '$stores/subjects.svelte';
 import * as z from 'zod/v4';
 import { get } from 'svelte/store';
 import { isSubjectsOldVersion, update } from '../../../utils/stores-migrate';
+import { m } from '$lib/paraglide/messages';
 
 export function load() {
 	const i = document.createElement('input');
@@ -13,12 +14,11 @@ export function load() {
 
 	i.addEventListener('change', () => {
 		if (!i.files || !i.files[0]) {
-			toast.error('No file selected');
 			return;
 		}
 
 		if (i.files[0].type !== 'application/json') {
-			toast.error('File type not supported');
+			toast.error(m.settings_backup_err_invalid());
 			return;
 		}
 
@@ -57,7 +57,7 @@ export function load() {
 				backup = scheme.parse(raw_backup);
 			} catch (error) {
 				if (error instanceof z.ZodError) {
-					toast.error('Invalid backup file');
+					toast.error(m.settings_backup_err_validation());
 					console.error(error);
 				}
 				return;
@@ -66,7 +66,7 @@ export function load() {
 			tasklist.set(backup.tasklist);
 			subjects.set(backup.subjects);
 
-			toast.success('Backup imported success');
+			toast.success(m.settings_backup_imported());
 		};
 
 		reader.readAsText(i.files[0]);
@@ -84,7 +84,6 @@ export function save() {
 	const blobURL = URL.createObjectURL(blob);
 
 	const a = document.createElement('a');
-	a.className = 'govno';
 	a.href = blobURL;
 	a.download = 'diary-backup.json';
 	a.click();

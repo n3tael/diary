@@ -3,9 +3,10 @@
 	import GitHub from '$lib/icons/GitHub.svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import { tasklist } from '$stores/tasklist.svelte';
-	import ThemeSwitch from '$lib/components/ui/ThemeSwitch.svelte';
+	import ThemeSwitch from '$lib/components/ui/ThemeSwitchButton.svelte';
 	import { Spring } from 'svelte/motion';
 	import { goto } from '$app/navigation';
+	import { m } from '$lib/paraglide/messages.js';
 
 	let tasksCount = new Spring(0);
 	let subjectsCount = new Spring(0);
@@ -13,17 +14,17 @@
 	const links = [
 		{
 			href: '/',
-			name: 'Tasks',
+			name: m.nav_tasks(),
 			count: tasksCount
 		},
 		{
 			href: '/subjects',
-			name: 'Subjects',
+			name: m.nav_subjects(),
 			count: subjectsCount
 		},
 		{
 			href: '/settings',
-			name: 'Settings'
+			name: m.nav_settings()
 		}
 	];
 
@@ -55,7 +56,7 @@
 <svelte:window onkeydown={handleNavigationByArrows} />
 
 <header>
-	<h3>Diary</h3>
+	<h3>{m.diary_name()}</h3>
 	<div class="pages">
 		{#each links as link}
 			{@const isOnThisPage = page.url.pathname === link.href}
@@ -82,7 +83,7 @@
 			</a>
 		{/each}
 	</div>
-	<div>
+	<div class="hidden grow basis-0 sm:flex justify-end gap-1">
 		<a href="https://github.com/n3tael/diary">
 			<button class="primary">
 				<GitHub size={16} />
@@ -96,7 +97,7 @@
 	@reference "$styles";
 
 	header {
-		@apply flex items-center justify-between;
+		@apply flex gap-x-2 items-center justify-center sm:justify-between;
 
 		.pages {
 			@apply flex gap-4;
@@ -124,7 +125,7 @@
 		}
 
 		h3 {
-			@apply text-2xl font-black;
+			@apply text-2xl font-black grow basis-0 hidden sm:block;
 		}
 	}
 </style>

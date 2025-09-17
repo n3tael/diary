@@ -9,6 +9,8 @@
 	import DatePicker from '$lib/components/ui/DatePicker.svelte';
 	import Checkbox from '$lib/components/ui/Checkbox.svelte';
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
+	import { getLocale } from '$lib/paraglide/runtime';
+	import { m } from '$lib/paraglide/messages.js';
 
 	let {
 		id,
@@ -32,7 +34,7 @@
 	}
 
 	const formatDate = (date: Date): string =>
-		Intl.DateTimeFormat(navigator.language, {
+		Intl.DateTimeFormat(getLocale(), {
 			day: '2-digit',
 			month: 'long'
 		}).format(date);
@@ -62,12 +64,12 @@
 				<Tooltip
 					class={['primary', editing ? 'active' : null]}
 					onclick={() => (editing = !editing)}
-					tip="Edit"
+					tip={m.task_actions_edit()}
 				>
 					<Pencil size="16" />
 				</Tooltip>
 			{/if}
-			<Tooltip class="primary" onclick={() => removeTask(id)} tip="Remove">
+			<Tooltip class="primary" onclick={() => removeTask(id)} tip={m.task_actions_remove()}>
 				<X size="16" />
 			</Tooltip>
 		</div>
@@ -101,10 +103,10 @@
 							]}
 						>
 							{days_remain > 0
-								? `${Math.ceil(days_remain)} days left`
+								? m.task_deadline_days_left({ count: Math.ceil(days_remain) })
 								: days_remain > -1
-									? 'less than a day left'
-									: 'expired'}
+									? m.task_deadline_less_than_day_left()
+									: m.task_deadline_expired()}
 						</span>
 					{/if}
 				{/if}

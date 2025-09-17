@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import AccentColors from '../ui/AccentColors.svelte';
+	import LanguageSelect from '$lib/components/ui/LanguageSelect.svelte';
 </script>
 
 <section>
 	<div class="info">
-		<h4>{m.settings_personalization_accent_color_head()}</h4>
-		<p>{m.settings_personalization_accent_color_desc()}</p>
+		<h4>{m.settings_personalization_language_head()}</h4>
+		<p>{m.settings_personalization_language_desc()}</p>
 	</div>
-	<AccentColors />
+	<LanguageSelect />
 </section>
 
 <style lang="postcss">

@@ -1,0 +1,77 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"self_name": "English",
+	"diary_name": "Diary",
+
+	"nav_tasks": "Tasks",
+	"nav_subjects": "Subjects",
+	"nav_settings": "Settings",
+
+	"setup_steps": "Step {current} of {total}",
+	"setup_intro_head": "Welcome to Diary!",
+	"setup_intro_desc": "Diary will help you keep track of your homework.",
+	"setup_appearance_head": "Appearance",
+	"setup_appearance_theme_light": "Light",
+	"setup_appearance_theme_dark": "Dark",
+	"setup_subjects_head": "Subjects",
+	"setup_subjects_desc": "Add all subjects you're study.",
+	"setup_subjects_input_placeholder": "Add subject",
+	"setup_done_head": "All is done!",
+
+	"tasks_no_tasks": "No tasks here yet",
+	"tasks_no_tasks_desc": "Add a new task to get started.",
+	"tasks_no_subjects": "No subjects added",
+	"tasks_no_subjects_desc": "Add your subjects on <a href=\"/subjects\">this page</a> or <a href=\"/setup/intro\">run the setup</a>.",
+	"task_actions_edit": "Edit",
+	"task_actions_remove": "Remove",
+	"task_deadline_days_left": [{
+    	"declarations": ["input count", "local countPlural = count: plural"],
+		"selectors": ["countPlural"],
+		"match": {
+			"countPlural=one": "{count} day left",
+			"countPlural=other": "{count} days left"
+		}
+  	}],
+	"task_deadline_less_than_day_left": "less than a day left",
+	"task_deadline_expired": "expired",
+	"add_task_desc_placeholder": "Description",
+
+	"subjects_no_subjects": "Your subject list is empty",
+	"subjects_no_subjects_desc": "Add your subjects below to continue use app.",
+	"subject_actions_edit": "Edit",
+	"subject_actions_edit_name_placeholder": "Name",
+	"subject_actions_remove": "Remove",
+	"subject_actions_remove_warn": "This subject has active assignments, are you sure you want to delete it? This will delete the tasks with this subject as well.",
+	"new_subject_name": "New subject",
+
+	"settings_personalization_section": "Personalization",
+	"settings_personalization_section_theme_head": "Theme",
+	"settings_personalization_section_theme_desc": "Choose the main color of the theme",
+	"settings_personalization_section_theme_light": "Light",
+	"settings_personalization_section_theme_dark": "Dark",
+	"settings_personalization_section_theme_system": "System",
+	"settings_personalization_accent_color_head": "Accent color",
+	"settings_personalization_accent_color_desc": "Defines the accent color for UI elements",
+	"settings_personalization_accent_color_blue": "Blue",
+	"settings_personalization_accent_color_aqua": "Aqua",
+	"settings_personalization_accent_color_green": "Green",
+	"settings_personalization_accent_color_purple": "Purple",
+	"settings_personalization_accent_color_pink": "Pink",
+	"settings_personalization_accent_color_red": "Red",
+	"settings_personalization_accent_color_custom": "Custom",
+	"settings_personalization_language_head": "Language",
+	"settings_personalization_language_desc": "Select your preferred display language",
+	
+	"settings_backup_section": "Backup",
+	"settings_backup_desc": "All data is stored locally, in your browser. However, you can also make a backup copy in case of loss of data from the browser, or for easy transfer to another device.",
+	"settings_backup_err_invalid": "Invalid backup file",
+	"settings_backup_err_validation": "Failed to import backup file. See console for details.",
+	"settings_backup_imported": "Backup import success",
+	"settings_danger_section": "Danger zone",
+	"settings_danger_reset_all_head": "Reset all data",
+	"settings_danger_reset_all_desc": "That include tasks, subjects, settings. Make sure you have backup before continue.",
+	"settings_danger_reset_all_btn": "Reset",
+	"settings_danger_reset_all_warn": "Are you sure to reset all data?",
+
+	"date_picker_set_today": "Set today as start date"
+}

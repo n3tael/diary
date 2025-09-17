@@ -2,6 +2,7 @@
 	import { X } from '@lucide/svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import generateId from '$utils/generateId';
+	import { m } from '$lib/paraglide/messages';
 
 	let addInput: HTMLInputElement;
 
@@ -41,11 +42,8 @@
 	}
 </script>
 
-<h1>Subjects</h1>
-<p>
-	On this page you need to add all the subjects you will study. This is
-	necessary for easily subject selection when creating a task.
-</p>
+<h1>{m.setup_subjects_head()}</h1>
+<p>{m.setup_subjects_desc()}</p>
 
 <ul class="subjects-input">
 	{#each $subjects as subject, i}
@@ -60,7 +58,7 @@
 		<input
 			type="text"
 			bind:this={addInput}
-			placeholder="Add subject"
+			placeholder={m.setup_subjects_input_placeholder()}
 			onkeydown={handleBackspace}
 		/>
 	</form>

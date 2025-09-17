@@ -1,10 +1,11 @@
-<script>
-	import AccentColors from '$lib/components/AccentColors.svelte';
+<script lang="ts">
+	import AccentColors from '$lib/components/ui/AccentColors.svelte';
+	import { m } from '$lib/paraglide/messages';
 	import { Check } from '@lucide/svelte';
 	import { mode, setMode, systemPrefersMode } from 'mode-watcher';
 </script>
 
-<h1>Appearance</h1>
+<h1>{m.setup_appearance_head()}</h1>
 <div class="flex flex-col gap-1">
 	<div
 		id="theme"
@@ -96,7 +97,7 @@
 					{/if}
 				</button>
 			</div>
-			<span>Light</span>
+			<span>{m.setup_appearance_theme_light()}</span>
 		</div>
 		<div class="flex flex-col gap-y-4 text-center font-medium">
 			<div id="dark-theme-preview" class="theme-preview">
@@ -184,7 +185,7 @@
 					{/if}
 				</button>
 			</div>
-			<span>Dark</span>
+			<span>{m.setup_appearance_theme_dark()}</span>
 		</div>
 	</div>
 	<div

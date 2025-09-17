@@ -4,6 +4,7 @@
 	import SubjectSelectOptions from '$lib/components/tasks/SubjectSelectOptions.svelte';
 	import DatePicker from '$lib/components/ui/DatePicker.svelte';
 	import generateId from '$utils/generateId';
+	import { m } from '$lib/paraglide/messages';
 
 	// show task creation form when there are no tasks
 	let creating: boolean = $state<boolean>($tasklist.length === 0);
@@ -52,7 +53,7 @@
 				class="w-full"
 				required={true}
 				bind:value={text}
-				placeholder="Description"
+				placeholder={m.add_task_desc_placeholder()}
 			/>
 			<button class="primary" type="submit"><Plus /></button>
 		</div>

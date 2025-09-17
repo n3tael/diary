@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Upload, Download } from '@lucide/svelte';
 	import { load, save } from './backup.svelte';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <section>
@@ -14,9 +15,7 @@
 	</div>
 
 	<p class="mt-2 text-zinc-500">
-		All data is stored locally, in your browser. However, you can also make a
-		backup copy in case of loss of data from the browser, or for easy transfer
-		to another device.
+		{m.settings_backup_desc()}
 	</p>
 </section>
 

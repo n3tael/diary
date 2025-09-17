@@ -3,15 +3,16 @@
 	import { themes } from '$lib/themes';
 	import { customAccentColor } from '$stores/custom-accent';
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
+	import { m } from '$lib/paraglide/messages';
+	import { browser } from '$app/environment';
 
 	let customAccentColorInput: HTMLInputElement;
 </script>
 
 <div class="flex gap-1">
 	{#each themes as color}
-		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<Tooltip
-			tip={color}
+			tip={m[`settings_personalization_accent_color_${color}`]()}
 			class={['color', theme.current === color ? 'active' : null]}
 			onclick={() => {
 				setTheme(color);
@@ -22,13 +23,14 @@
 				: `background-color:${$customAccentColor}`}
 		></Tooltip>
 	{/each}
+	{#if browser}
 	<input
 		bind:this={customAccentColorInput}
 		type="color"
 		class="hidden"
-		onclick={() => setTheme('custom')}
 		bind:value={$customAccentColor}
 	/>
+	{/if}
 </div>
 
 <style lang="postcss">

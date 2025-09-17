@@ -1,0 +1,77 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"self_name": "Русский",
+	"diary_name": "Дневник",
+
+	"nav_tasks": "Задания",
+	"nav_subjects": "Предметы",
+	"nav_settings": "Настройки",
+
+	"setup_steps": "Шаг {current} из {total}",
+	"setup_intro_head": "Добро пожаловать в Дневник!",
+	"setup_intro_desc": "Дневник поможет вам следить за вашими домашними заданиями.",
+	"setup_appearance_head": "Вид",
+	"setup_appearance_theme_light": "Светлый",
+	"setup_appearance_theme_dark": "Тёмный",
+	"setup_subjects_head": "Предметы",
+	"setup_subjects_desc": "Добавьте все ваши предметы которые вы изучаете.",
+	"setup_subjects_input_placeholder": "Добавить предмет",
+	"setup_done_head": "Всё выполнено!",
+
+	"tasks_no_tasks": "Здесь пока нет заданий",
+	"tasks_no_tasks_desc": "Добавьте новое задание чтобы начать.",
+	"tasks_no_subjects": "0 предметов добавлено",
+	"tasks_no_subjects_desc": "Добавьте ваши предметы на <a href=\"/subjects\">этой странице</a> или <a href=\"/setup/intro\">откройте начальную настройку</a>.",
+	"task_actions_edit": "Изменить",
+	"task_actions_remove": "Удалить",
+	"task_deadline_days_left": [{
+    	"declarations": ["input count", "local countPlural = count: plural"],
+		"selectors": ["countPlural"],
+		"match": {
+			"countPlural=one": "остался {count} день",
+			"countPlural=other": "осталось {count} дней"
+		}
+  	}],
+	"task_deadline_less_than_day_left": "осталось меньше одного дня",
+	"task_deadline_expired": "просрочено",
+	"add_task_desc_placeholder": "Описание",
+
+	"subjects_no_subjects": "Ваш список предметов пуст",
+	"subjects_no_subjects_desc": "Добавьте ваши предметы ниже, чтобы продолжить пользование приложением.",
+	"subject_actions_edit": "Изменить",
+	"subject_actions_edit_name_placeholder": "Имя",
+	"subject_actions_remove": "Удалить",
+	"subject_actions_remove_warn": "Этот предмет имеет действующие задания, вы уверены, что хотите его удалить? Это действие также удалит все связанные задания.",
+	"new_subject_name": "Новый предмет",
+
+	"settings_personalization_section": "Персонализация",
+	"settings_personalization_section_theme_head": "Тема",
+	"settings_personalization_section_theme_desc": "Выберите основной цвет темы",
+	"settings_personalization_section_theme_light": "Светлая",
+	"settings_personalization_section_theme_dark": "Тёмная",
+	"settings_personalization_section_theme_system": "Системная",
+	"settings_personalization_accent_color_head": "Акцентный цвет",
+	"settings_personalization_accent_color_desc": "Устанавливает акцентный цвет пользовательского интерфейса",
+	"settings_personalization_accent_color_blue": "Голубой",
+	"settings_personalization_accent_color_aqua": "Аква",
+	"settings_personalization_accent_color_green": "Зелёный",
+	"settings_personalization_accent_color_purple": "Фиолетовый",
+	"settings_personalization_accent_color_pink": "Розовый",
+	"settings_personalization_accent_color_red": "Красный",
+	"settings_personalization_accent_color_custom": "Пользовательский",
+	"settings_personalization_language_head": "Язык",
+	"settings_personalization_language_desc": "Выберите ваш предпочитаемый язык интерфейса",
+	
+	"settings_backup_section": "Резервное копирование",
+	"settings_backup_desc": "Все ваши данные хранятся локально в вашем браузере. Однако, вы можете сделать резервную копию в случае потери данных браузера или в случае необходимости переноса данных на другие устройства.",
+	"settings_backup_err_filetype": "Недопустимый файл резервной копии",
+	"settings_backup_err_invalid": "Не удалось импортировать файл резервной копии. Подробности см. в консоли",
+	"settings_backup_imported": "Backup import success",
+	"settings_danger_section": "Опасная зона",
+	"settings_danger_reset_all_head": "Сбросить все данные",
+	"settings_danger_reset_all_desc": "Это включает в себя предметы, задания и настройки. Убедитесь, что у вас есть резервная копия, перед тем как продолжить",
+	"settings_danger_reset_all_btn": "Сброс",
+	"settings_danger_reset_all_warn": "Вы уверены, что хотите сбросить все данные?",
+
+	"date_picker_set_today": "Выставить сегодняшний день как начальную дату"
+}

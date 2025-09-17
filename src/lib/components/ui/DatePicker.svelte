@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Calendar, Minus } from '@lucide/svelte';
+	import Tooltip from './Tooltip.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let {
 		startDate = $bindable(),
@@ -11,13 +13,14 @@
 </script>
 
 <div class="date-picker">
-	<button
+	<Tooltip
 		class="icon"
 		onclick={setStartDateToday}
 		aria-label="Set today as start date"
+		tip={m.date_picker_set_today()}
 	>
 		<Calendar size="16" />
-	</button>
+	</Tooltip>
 	<input type="date" required bind:value={startDate} />
 	<span class="separator">
 		<Minus size="16" />
@@ -31,7 +34,7 @@
 <style lang="postcss">
 	@reference "$styles";
 
-	.date-picker {
+	.date-picker :global {
 		@apply flex w-max items-center gap-2 rounded-md border-2 border-zinc-200 text-sm dark:border-zinc-800;
 
 		.icon {

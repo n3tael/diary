@@ -9,6 +9,7 @@
 	import { flip } from 'svelte/animate';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { m } from '$lib/paraglide/messages.js';
 
 	const flipDurationMs = 300;
 
@@ -26,21 +27,24 @@
 		!localStorage.getItem('tasklist')
 	)
 		goto('/setup/introduce');
+
+	let pageTitle = $derived(`${m.diary_name()} • ${m.nav_tasks()} ${$tasklist.length ? `(${$tasklist.filter(s => s.done).length}/${$tasklist.length})` : ''}`);
 </script>
+
+<svelte:head>
+	<title>{pageTitle}</title>
+</svelte:head>
 
 {#if $subjects.length === 0}
 	<Alert.Root>
-		<Alert.Title>No subjects added</Alert.Title>
-		<Alert.Description
-			>Add your subjects on <a href="/subjects">this page</a> or
-			<a href="/setup/intro">run the setup</a>.</Alert.Description
-		>
+		<Alert.Title>{m.tasks_no_subjects()}</Alert.Title>
+		<Alert.Description>{@html m.tasks_no_subjects_desc()}</Alert.Description>
 	</Alert.Root>
 {:else}
 	{#if $tasklist.length === 0}
 		<Alert.Root>
-			<Alert.Title>No tasks here yet</Alert.Title>
-			<Alert.Description>Add a new task to get started.</Alert.Description>
+			<Alert.Title>{m.tasks_no_tasks()}</Alert.Title>
+			<Alert.Description>{m.tasks_no_tasks_desc()}</Alert.Description>
 		</Alert.Root>
 	{:else}
 		<div

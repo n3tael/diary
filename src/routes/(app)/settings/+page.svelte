@@ -1,17 +1,26 @@
 <script lang="ts">
 	import AccentSection from '$lib/components/settings/AccentSection.svelte';
+	import LanguageSection from '$lib/components/settings/LanguageSection.svelte';
 	import BackupSection from '$lib/components/settings/BackupSection.svelte';
 	import ResetSection from '$lib/components/settings/ResetSection.svelte';
 	import BuildInfoSection from '$lib/components/settings/BuildInfoSection.svelte';
+	import { m } from '$lib/paraglide/messages';
+	import ThemeSection from '$lib/components/settings/ThemeSection.svelte';
 </script>
 
-<h2 class="section-name">Personalization</h2>
-<AccentSection />
+<svelte:head>
+	<title>{m.diary_name()} • {m.nav_settings()}</title>
+</svelte:head>
 
-<h2 class="section-name">Backup</h2>
+<h2 class="section-name">{m.settings_personalization_section()}</h2>
+<ThemeSection />
+<AccentSection />
+<LanguageSection />
+
+<h2 class="section-name">{m.settings_backup_section()}</h2>
 <BackupSection />
 
-<h2 class="section-name">Danger zone</h2>
+<h2 class="section-name">{m.settings_danger_section()}</h2>
 <ResetSection />
 
 <hr />

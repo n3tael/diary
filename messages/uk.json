@@ -1,0 +1,76 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"self_name": "Українська",
+	"diary_name": "Щоденник",
+
+	"nav_tasks": "Завдання",
+	"nav_subjects": "Предмети",
+	"nav_settings": "Налаштування",
+
+	"setup_steps": "Крок {current} з {total}",
+	"setup_intro_head": "Ласкаво просимо у Щоденник!",
+	"setup_intro_desc": "Щоденник допоможе вам слідкувати за вашими домашніми завданнями.",
+	"setup_appearance_head": "Вигляд",
+	"setup_appearance_theme_light": "Світлий",
+	"setup_appearance_theme_dark": "Темний",
+	"setup_subjects_head": "Предмети",
+	"setup_subjects_desc": "Додайте усі предмети які ви вивчаєте.",
+	"setup_subjects_input_placeholder": "Додати предмет",
+	"setup_done_head": "Все зроблено!",
+
+	"tasks_no_tasks": "Поки немає завданнь",
+	"tasks_no_tasks_desc": "Додайте нове завдання, щоб розпочати.",
+	"tasks_no_subjects": "Не додано жодного предмета",
+	"tasks_no_subjects_desc": "Додайте свої предмети на <a href=\"/subjects\">цій сторінці</a> або <a href=\"/setup/intro\">запустить перше налаштування</a>.",
+	"task_actions_edit": "Змінити",
+	"task_actions_remove": "Видалити",
+	"task_deadline_days_left": [{
+    	"declarations": ["input count", "local countPlural = count: plural"],
+		"selectors": ["countPlural"],
+		"match": {
+			"countPlural=one": "залишився {count} день",
+			"countPlural=other": "залишилося {count} дні"
+		}
+  	}],
+	"task_deadline_less_than_day_left": "залишилося менше доби",
+	"task_deadline_expired": "прострочено",
+	"add_task_desc_placeholder": "Опис",
+
+	"subjects_no_subjects": "Ваш список предметів порожній",
+	"subjects_no_subjects_desc": "Додайте предмети нижче, щоб продовжити користуватися застосунком.",
+	"subject_actions_edit": "Змінити",
+	"subject_actions_edit_name_placeholder": "Ім'я",
+	"subject_actions_remove": "Видалити",
+	"subject_actions_remove_warn": "Цей предмет має активні завдання, чи точно хочете видалити його? Це видалить зв'язані завдання також.",
+	"new_subject_name": "Новий предмет",
+
+	"settings_personalization_section": "Персоналізація",
+	"settings_personalization_section_theme_head": "Тема",
+	"settings_personalization_section_theme_desc": "Оберіть основний колір теми",
+	"settings_personalization_section_theme_light": "Світла",
+	"settings_personalization_section_theme_dark": "Темна",
+	"settings_personalization_section_theme_system": "Системна",
+	"settings_personalization_accent_color_head": "Акцентний колір",
+	"settings_personalization_accent_color_desc": "Задає акцентний колір для елементів користувацького інтерфейсу",
+	"settings_personalization_accent_color_blue": "Блакитний",
+	"settings_personalization_accent_color_aqua": "Аква",
+	"settings_personalization_accent_color_green": "Зелений",
+	"settings_personalization_accent_color_purple": "Фіолетовий",
+	"settings_personalization_accent_color_pink": "Рожевий",
+	"settings_personalization_accent_color_red": "Червоний",
+	"settings_personalization_accent_color_custom": "Користувацький",
+	"settings_personalization_language_head": "Мова",
+	"settings_personalization_language_desc": "Оберіть свою бажану мову відображення",
+	
+	"settings_backup_section": "Резервне копіювання",
+	"settings_backup_desc": "Усі дані зберігаються локально в браузері. Однак, ви також можете створити резервну копію, на випадок втрачі даних з браузеру, або для легкого переміщення на інший пристрій.",
+	"settings_backup_err_filetype": "Недопустимий файл резервної копії",
+	"settings_backup_err_invalid": "Не вдалося імпортувати файл резервної копії. Подробиці див. у консолі",
+	"settings_danger_section": "Небезпечна зона",
+	"settings_danger_reset_all_head": "Скинути всі дані",
+	"settings_danger_reset_all_desc": "Це включає завдання, предмети та налаштування. Переконайтеся, що у вас є резервна копія, перш ніж продовжити.",
+	"settings_danger_reset_all_btn": "Скинути",
+	"settings_danger_reset_all_warn": "Ви впевнені що хочете скинути всі дані?",
+	
+	"date_picker_set_today": "Встановити сьогодні як дату початку"
+}

@@ -5,6 +5,7 @@
 	import { dragHandle } from 'svelte-dnd-action';
 	import { fly } from 'svelte/transition';
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let { id, name = $bindable() }: { id: number; name: string } = $props();
 	let editing: boolean = $state<boolean>(false);
@@ -17,9 +18,7 @@
 		let subjectTasks = $tasklist.filter((t) => t.subjectId === subject.id);
 
 		if (subjectTasks.length > 0) {
-			const d: boolean = confirm(
-				'This subject has assignments, are you sure you want to delete it? This will delete the tasks with this subject as well.'
-			);
+			const d: boolean = confirm(m.subject_actions_remove_warn());
 			if (!d) return;
 
 			subjectTasks.forEach((st) =>
@@ -49,7 +48,7 @@
 				class="mr-2.5 w-full border-0! bg-zinc-100! dark:bg-zinc-900!"
 				type="text"
 				bind:value={name}
-				placeholder="Name"
+				placeholder={m.subject_actions_edit_name_placeholder()}
 				in:fly={{ duration: 200, delay: 200, y: 10 }}
 				out:fly={{ duration: 200, y: 10 }}
 				maxlength="64"
@@ -63,11 +62,11 @@
 		<Tooltip
 			class={editing ? 'active' : null}
 			onclick={() => (editing = !editing)}
-			tip="Edit"
+			tip={m.subject_actions_edit()}
 		>
 			<Pencil size="16" />
 		</Tooltip>
-		<Tooltip onclick={() => removeSubject(id)} tip="Remove">
+		<Tooltip onclick={() => removeSubject(id)} tip={m.subject_actions_remove()}>
 			<X size="16" />
 		</Tooltip>
 	</div>

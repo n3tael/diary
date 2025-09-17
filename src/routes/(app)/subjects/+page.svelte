@@ -6,6 +6,7 @@
 	import type { Subject as ISubject } from '$stores/subjects.svelte';
 	import { dragHandleZone } from 'svelte-dnd-action';
 	import { flip } from 'svelte/animate';
+	import { m } from '$lib/paraglide/messages';
 
 	const flipDurationMs = 300;
 
@@ -18,12 +19,14 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{m.diary_name()} • {m.nav_subjects()}</title>
+</svelte:head>
+
 {#if $subjects.length === 0}
 	<Alert.Root>
-		<Alert.Title>Your subject list is empty</Alert.Title>
-		<Alert.Description
-			>Add your subjects below to continue use app.</Alert.Description
-		>
+		<Alert.Title>{m.subjects_no_subjects()}</Alert.Title>
+		<Alert.Description>{m.subjects_no_subjects_desc()}</Alert.Description>
 	</Alert.Root>
 {/if}
 

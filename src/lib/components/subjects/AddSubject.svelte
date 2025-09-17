@@ -2,13 +2,14 @@
 	import { Plus } from '@lucide/svelte';
 	import { subjects } from '$stores/subjects.svelte';
 	import generateId from '$utils/generateId';
+	import { m } from '$lib/paraglide/messages';
 
 	function addSubject() {
 		subjects.update((s) => [
 			...s,
 			{
 				id: generateId(s.map((subject) => subject.id)),
-				name: 'New subject'
+				name: m.new_subject_name()
 			}
 		]);
 	}

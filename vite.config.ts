@@ -1,3 +1,4 @@
+import { paraglideVitePlugin } from '@inlang/paraglide-js'
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
@@ -19,7 +20,15 @@ const getBranch = async () => {
 };
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [
+		paraglideVitePlugin({
+			project: './project.inlang',
+			outdir: './src/lib/paraglide',
+			strategy: ["localStorage", "preferredLanguage", "baseLocale"]
+		}),
+		tailwindcss(),
+		sveltekit()
+	],
 	define: {
 		__APP_VERSION__: {
 			name: pkg.name,

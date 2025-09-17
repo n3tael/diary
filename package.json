@@ -7,6 +7,8 @@
 		"url": "https://n3tael.eu.org"
 	},
 	"devDependencies": {
+		"@fontsource/inter": "^5.2.7",
+		"@inlang/paraglide-js": "2.3.2",
 		"@lucide/svelte": "^0.483.0",
 		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/kit": "^2.37.1",
@@ -40,8 +42,5 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/inter": "^5.2.6"
-	}
+	"type": "module"
 }

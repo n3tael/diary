@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { m } from "$lib/paraglide/messages";
+
 	function reset() {
-		const c = confirm('Are you sure to reset all data?');
+		const c = confirm(m.settings_danger_reset_all_warn());
 		if (c) {
 			window.localStorage.clear();
 			location.href = '/';
@@ -10,13 +12,10 @@
 
 <section>
 	<div class="info">
-		<h4>Reset all data</h4>
-		<p>
-			That include tasks, subjects, settings. Make sure you have backup before
-			continue.
-		</p>
+		<h4>{m.settings_danger_reset_all_head()}</h4>
+		<p>{m.settings_danger_reset_all_desc()}</p>
 	</div>
-	<button onclick={reset}>Reset</button>
+	<button onclick={reset}>{m.settings_danger_reset_all_btn()}</button>
 </section>
 
 <style lang="postcss">
@@ -26,7 +25,7 @@
 		@apply my-3 flex items-center justify-between;
 
 		.info {
-			@apply flex flex-col gap-1;
+			@apply flex flex-col gap-1 max-w-lg;
 
 			h4 {
 				@apply text-xl font-medium;
