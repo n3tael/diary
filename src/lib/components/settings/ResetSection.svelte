@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
+	import { m } from '$lib/paraglide/messages';
 
 	function reset() {
 		const c = confirm(m.settings_danger_reset_all_warn());
@@ -25,7 +25,7 @@
 		@apply my-3 flex items-center justify-between;
 
 		.info {
-			@apply flex flex-col gap-1 max-w-lg;
+			@apply flex max-w-lg flex-col gap-1;
 
 			h4 {
 				@apply text-xl font-medium;

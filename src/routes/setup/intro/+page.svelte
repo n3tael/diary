@@ -1,6 +1,6 @@
 <script lang="ts">
-	import LanguageSelect from "$lib/components/ui/LanguageSelect.svelte";
-	import { m } from "$lib/paraglide/messages";
+	import LanguageSelect from '$lib/components/ui/LanguageSelect.svelte';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <svelte:head>

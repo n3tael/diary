@@ -18,7 +18,7 @@
 	});
 
 	onMount(() => {
-		document.documentElement.setAttribute("lang", getLocale());
+		document.documentElement.setAttribute('lang', getLocale());
 	});
 </script>
 

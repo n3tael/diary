@@ -24,14 +24,16 @@
 	"tasks_no_subjects_desc": "Добавьте ваши предметы на <a href=\"/subjects\">этой странице</a> или <a href=\"/setup/intro\">откройте начальную настройку</a>.",
 	"task_actions_edit": "Изменить",
 	"task_actions_remove": "Удалить",
-	"task_deadline_days_left": [{
-    	"declarations": ["input count", "local countPlural = count: plural"],
-		"selectors": ["countPlural"],
-		"match": {
-			"countPlural=one": "остался {count} день",
-			"countPlural=other": "осталось {count} дней"
+	"task_deadline_days_left": [
+		{
+			"declarations": ["input count", "local countPlural = count: plural"],
+			"selectors": ["countPlural"],
+			"match": {
+				"countPlural=one": "остался {count} день",
+				"countPlural=other": "осталось {count} дней"
+			}
 		}
-  	}],
+	],
 	"task_deadline_less_than_day_left": "осталось меньше одного дня",
 	"task_deadline_expired": "просрочено",
 	"add_task_desc_placeholder": "Описание",
@@ -61,7 +63,7 @@
 	"settings_personalization_accent_color_custom": "Пользовательский",
 	"settings_personalization_language_head": "Язык",
 	"settings_personalization_language_desc": "Выберите ваш предпочитаемый язык интерфейса",
-	
+
 	"settings_backup_section": "Резервное копирование",
 	"settings_backup_desc": "Все ваши данные хранятся локально в вашем браузере. Однако, вы можете сделать резервную копию в случае потери данных браузера или в случае необходимости переноса данных на другие устройства.",
 	"settings_backup_err_filetype": "Недопустимый файл резервной копии",

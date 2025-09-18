@@ -8,6 +8,7 @@ Diary is a web application that will help you keep track of your homework.
 - Assigning a time to complete a task.
 - Edit the text of the task with Markdown.
 - All data is stored in the browser (`localStorage`).
+- Multilingual
 
 Try at [diary.n3tael.eu.org](https://diary.n3tael.eu.org/)!
 
@@ -31,6 +32,15 @@ bun run build
 ```
 
 You can preview the production build with `bun run preview`.
+
+## Credits
+
+- qwillar - testing, ideas
+
+### Translators
+
+- qwillar & n3tael - russian translation
+- n3tael - ukrainian translation
 
 ## Support
 

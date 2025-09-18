@@ -24,14 +24,16 @@
 	"tasks_no_subjects_desc": "Add your subjects on <a href=\"/subjects\">this page</a> or <a href=\"/setup/intro\">run the setup</a>.",
 	"task_actions_edit": "Edit",
 	"task_actions_remove": "Remove",
-	"task_deadline_days_left": [{
-    	"declarations": ["input count", "local countPlural = count: plural"],
-		"selectors": ["countPlural"],
-		"match": {
-			"countPlural=one": "{count} day left",
-			"countPlural=other": "{count} days left"
+	"task_deadline_days_left": [
+		{
+			"declarations": ["input count", "local countPlural = count: plural"],
+			"selectors": ["countPlural"],
+			"match": {
+				"countPlural=one": "{count} day left",
+				"countPlural=other": "{count} days left"
+			}
 		}
-  	}],
+	],
 	"task_deadline_less_than_day_left": "less than a day left",
 	"task_deadline_expired": "expired",
 	"add_task_desc_placeholder": "Description",
@@ -61,7 +63,7 @@
 	"settings_personalization_accent_color_custom": "Custom",
 	"settings_personalization_language_head": "Language",
 	"settings_personalization_language_desc": "Select your preferred display language",
-	
+
 	"settings_backup_section": "Backup",
 	"settings_backup_desc": "All data is stored locally, in your browser. However, you can also make a backup copy in case of loss of data from the browser, or for easy transfer to another device.",
 	"settings_backup_err_invalid": "Invalid backup file",

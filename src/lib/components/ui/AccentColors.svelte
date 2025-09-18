@@ -24,12 +24,12 @@
 		></Tooltip>
 	{/each}
 	{#if browser}
-	<input
-		bind:this={customAccentColorInput}
-		type="color"
-		class="hidden"
-		bind:value={$customAccentColor}
-	/>
+		<input
+			bind:this={customAccentColorInput}
+			type="color"
+			class="hidden"
+			bind:value={$customAccentColor}
+		/>
 	{/if}
 </div>
 

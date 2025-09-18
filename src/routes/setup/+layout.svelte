@@ -19,14 +19,21 @@
 
 <div class="setup">
 	{#if currentStageIndex !== 0}
-		<p in:fade>{m.setup_steps({ current: currentStageIndex, total: stages.length - 1 })}</p>
-		<progress in:fade class="rounded-full h-1 accent-accent" value={progress.current} max={stages.length-1}></progress>
+		<p in:fade>
+			{m.setup_steps({ current: currentStageIndex, total: stages.length - 1 })}
+		</p>
+		<progress
+			in:fade
+			class="accent-accent h-1 rounded-full"
+			value={progress.current}
+			max={stages.length - 1}
+		></progress>
 	{/if}
-	
+
 	<div class="step">
-	{@render children()}
+		{@render children()}
 	</div>
-	
+
 	<div class="flex gap-2">
 		{#if currentStageIndex === stages.length - 1}
 			<button
@@ -40,9 +47,17 @@
 			</button>
 		{:else}
 			{#if currentStageIndex !== 0}
-				<a class="prev" href={`/setup/${stages[currentStageIndex - 1]}`} data-sveltekit-preload-code="eager"><ArrowLeft /></a>
+				<a
+					class="prev"
+					href={`/setup/${stages[currentStageIndex - 1]}`}
+					data-sveltekit-preload-code="eager"><ArrowLeft /></a
+				>
 			{/if}
-			<a class="next" href={`/setup/${stages[currentStageIndex + 1]}`} data-sveltekit-preload-code="eager"><ArrowRight /></a>
+			<a
+				class="next"
+				href={`/setup/${stages[currentStageIndex + 1]}`}
+				data-sveltekit-preload-code="eager"><ArrowRight /></a
+			>
 		{/if}
 	</div>
 </div>
@@ -51,19 +66,19 @@
 	@reference "$styles";
 
 	.setup {
-		@apply absolute top-0 right-0 bottom-0 left-0 mx-4 flex max-w-128 flex-col items-center justify-center gap-4 min-[34rem]:mx-auto;
-	
+		@apply absolute top-0 right-0 bottom-0 left-0 mx-4 flex max-w-128 flex-col items-center justify-center gap-4 text-center min-[34rem]:mx-auto;
+
 		progress {
 			@apply bg-zinc-100 dark:bg-zinc-900;
 
 			&::-webkit-progress-value,
-			&::-moz-progress-bar { 
+			&::-moz-progress-bar {
 				@apply bg-accent transition-colors;
 			}
 		}
 
 		.step {
-			@apply h-96 flex flex-col gap-y-4 justify-center items-center;
+			@apply flex h-96 flex-col items-center justify-center gap-y-4;
 		}
 
 		.prev {

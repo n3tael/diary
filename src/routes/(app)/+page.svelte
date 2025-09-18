@@ -28,7 +28,9 @@
 	)
 		goto('/setup/introduce');
 
-	let pageTitle = $derived(`${m.diary_name()} • ${m.nav_tasks()} ${$tasklist.length ? `(${$tasklist.filter(s => s.done).length}/${$tasklist.length})` : ''}`);
+	let pageTitle = $derived(
+		`${m.diary_name()} • ${m.nav_tasks()} ${$tasklist.length ? `(${$tasklist.filter((s) => s.done).length}/${$tasklist.length})` : ''}`
+	);
 </script>
 
 <svelte:head>

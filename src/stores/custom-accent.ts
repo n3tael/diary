@@ -1,7 +1,9 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
-const initialValue = browser ? localStorage.getItem('custom-accent') ?? '#999' : '#999';
+const initialValue = browser
+	? (localStorage.getItem('custom-accent') ?? '#999')
+	: '#999';
 
 export const customAccentColor = writable<string>(initialValue);
 

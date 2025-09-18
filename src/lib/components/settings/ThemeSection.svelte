@@ -8,11 +8,17 @@
 		<h4>{m.settings_personalization_section_theme_head()}</h4>
 		<p>{m.settings_personalization_section_theme_desc()}</p>
 	</div>
-    <select bind:value={() => userPrefersMode.current, (l) => setMode(l)}>
-        <option value="light">{m.settings_personalization_section_theme_light()}</option>
-        <option value="dark">{m.settings_personalization_section_theme_dark()}</option>
-        <option value="system">{m.settings_personalization_section_theme_system()}</option>
-    </select>
+	<select bind:value={() => userPrefersMode.current, (l) => setMode(l)}>
+		<option value="light"
+			>{m.settings_personalization_section_theme_light()}</option
+		>
+		<option value="dark"
+			>{m.settings_personalization_section_theme_dark()}</option
+		>
+		<option value="system"
+			>{m.settings_personalization_section_theme_system()}</option
+		>
+	</select>
 </section>
 
 <style lang="postcss">

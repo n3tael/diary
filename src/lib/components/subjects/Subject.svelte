@@ -95,7 +95,7 @@
 			@apply flex gap-1 p-2;
 
 			button {
-				@apply p-1 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-colors;
+				@apply rounded-md p-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-800;
 
 				&.active {
 					background-color: oklch(from var(--color-accent) l c h / 50%);

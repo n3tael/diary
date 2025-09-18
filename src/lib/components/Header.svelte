@@ -83,7 +83,7 @@
 			</a>
 		{/each}
 	</div>
-	<div class="hidden grow basis-0 sm:flex justify-end gap-1">
+	<div class="hidden grow basis-0 justify-end gap-1 sm:flex">
 		<a href="https://github.com/n3tael/diary">
 			<button class="primary">
 				<GitHub size={16} />
@@ -97,7 +97,7 @@
 	@reference "$styles";
 
 	header {
-		@apply flex gap-x-2 items-center justify-center sm:justify-between;
+		@apply flex items-center justify-center gap-x-2 sm:justify-between;
 
 		.pages {
 			@apply flex gap-4;
@@ -125,7 +125,7 @@
 		}
 
 		h3 {
-			@apply text-2xl font-black grow basis-0 hidden sm:block;
+			@apply hidden grow basis-0 text-2xl font-black sm:block;
 		}
 	}
 </style>

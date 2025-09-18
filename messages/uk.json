@@ -24,14 +24,16 @@
 	"tasks_no_subjects_desc": "Додайте свої предмети на <a href=\"/subjects\">цій сторінці</a> або <a href=\"/setup/intro\">запустить перше налаштування</a>.",
 	"task_actions_edit": "Змінити",
 	"task_actions_remove": "Видалити",
-	"task_deadline_days_left": [{
-    	"declarations": ["input count", "local countPlural = count: plural"],
-		"selectors": ["countPlural"],
-		"match": {
-			"countPlural=one": "залишився {count} день",
-			"countPlural=other": "залишилося {count} дні"
+	"task_deadline_days_left": [
+		{
+			"declarations": ["input count", "local countPlural = count: plural"],
+			"selectors": ["countPlural"],
+			"match": {
+				"countPlural=one": "залишився {count} день",
+				"countPlural=other": "залишилося {count} дні"
+			}
 		}
-  	}],
+	],
 	"task_deadline_less_than_day_left": "залишилося менше доби",
 	"task_deadline_expired": "прострочено",
 	"add_task_desc_placeholder": "Опис",
@@ -61,7 +63,7 @@
 	"settings_personalization_accent_color_custom": "Користувацький",
 	"settings_personalization_language_head": "Мова",
 	"settings_personalization_language_desc": "Оберіть свою бажану мову відображення",
-	
+
 	"settings_backup_section": "Резервне копіювання",
 	"settings_backup_desc": "Усі дані зберігаються локально в браузері. Однак, ви також можете створити резервну копію, на випадок втрачі даних з браузеру, або для легкого переміщення на інший пристрій.",
 	"settings_backup_err_filetype": "Недопустимий файл резервної копії",
@@ -71,6 +73,6 @@
 	"settings_danger_reset_all_desc": "Це включає завдання, предмети та налаштування. Переконайтеся, що у вас є резервна копія, перш ніж продовжити.",
 	"settings_danger_reset_all_btn": "Скинути",
 	"settings_danger_reset_all_warn": "Ви впевнені що хочете скинути всі дані?",
-	
+
 	"date_picker_set_today": "Встановити сьогодні як дату початку"
 }

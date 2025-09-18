@@ -69,7 +69,11 @@
 					<Pencil size="16" />
 				</Tooltip>
 			{/if}
-			<Tooltip class="primary" onclick={() => removeTask(id)} tip={m.task_actions_remove()}>
+			<Tooltip
+				class="primary"
+				onclick={() => removeTask(id)}
+				tip={m.task_actions_remove()}
+			>
 				<X size="16" />
 			</Tooltip>
 		</div>
