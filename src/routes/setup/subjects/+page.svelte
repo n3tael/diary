@@ -3,6 +3,9 @@
 	import { subjects } from '$stores/subjects.svelte';
 	import generateId from '$utils/generateId';
 	import { m } from '$lib/paraglide/messages';
+	import { getButtonContext } from '../context';
+
+	const nextButton = getButtonContext();
 
 	let addInput: HTMLInputElement;
 
@@ -40,6 +43,10 @@
 
 		addInput.value = '';
 	}
+
+	$effect(() => {
+		nextButton.disable = $subjects.length === 0;
+	});
 </script>
 
 <h1>{m.setup_subjects_head()}</h1>

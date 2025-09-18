@@ -8,6 +8,7 @@
 	"nav_settings": "Настройки",
 
 	"setup_steps": "Шаг {current} из {total}",
+	"setup_skip_btn": "Пропустить",
 	"setup_intro_head": "Добро пожаловать в Дневник!",
 	"setup_intro_desc": "Дневник поможет вам следить за вашими домашними заданиями.",
 	"setup_appearance_head": "Вид",

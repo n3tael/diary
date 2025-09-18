@@ -8,6 +8,7 @@
 	"nav_settings": "Налаштування",
 
 	"setup_steps": "Крок {current} з {total}",
+	"setup_skip_btn": "Пропустити",
 	"setup_intro_head": "Ласкаво просимо у Щоденник!",
 	"setup_intro_desc": "Щоденник допоможе вам слідкувати за вашими домашніми завданнями.",
 	"setup_appearance_head": "Вигляд",

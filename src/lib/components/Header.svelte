@@ -84,7 +84,7 @@
 		{/each}
 	</div>
 	<div class="hidden grow basis-0 justify-end gap-1 sm:flex">
-		<a href="https://github.com/n3tael/diary">
+		<a href="https://github.com/n3tael/diary" target="_blank">
 			<button class="primary">
 				<GitHub size={16} />
 			</button>

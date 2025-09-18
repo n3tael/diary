@@ -8,6 +8,7 @@
 	"nav_settings": "Settings",
 
 	"setup_steps": "Step {current} of {total}",
+	"setup_skip_btn": "Skip",
 	"setup_intro_head": "Welcome to Diary!",
 	"setup_intro_desc": "Diary will help you keep track of your homework.",
 	"setup_appearance_head": "Appearance",

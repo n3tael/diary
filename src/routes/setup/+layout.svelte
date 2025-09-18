@@ -6,6 +6,7 @@
 	import { cubicOut } from 'svelte/easing';
 	import { Tween } from 'svelte/motion';
 	import { fade } from 'svelte/transition';
+	import { setButtonContext } from './context';
 
 	let { children } = $props();
 
@@ -15,6 +16,12 @@
 	);
 
 	let progress = Tween.of(() => currentStageIndex, { easing: cubicOut });
+
+	let nextButton = $state({
+		disable: false
+	});
+
+	setButtonContext(nextButton);
 </script>
 
 <div class="setup">
@@ -52,11 +59,21 @@
 					href={`/setup/${stages[currentStageIndex - 1]}`}
 					data-sveltekit-preload-code="eager"><ArrowLeft /></a
 				>
+			{:else}
+				<button
+					class="skip"
+					onclick={() => {
+						localStorage.setItem('setupComplete', 'true');
+						goto('/');
+					}}
+					data-sveltekit-preload-code="eager">{m.setup_skip_btn()}</button
+				>
 			{/if}
-			<a
+			<button
 				class="next"
-				href={`/setup/${stages[currentStageIndex + 1]}`}
-				data-sveltekit-preload-code="eager"><ArrowRight /></a
+				onclick={() => goto(`/setup/${stages[currentStageIndex + 1]}`)}
+				disabled={currentStageIndex === 2 ? nextButton.disable : false}
+				data-sveltekit-preload-code="eager"><ArrowRight /></button
 			>
 		{/if}
 	</div>
@@ -81,15 +98,22 @@
 			@apply flex h-96 flex-col items-center justify-center gap-y-4;
 		}
 
+		.skip {
+			@apply rounded-full border-1 border-zinc-200 px-4 py-2 hover:border-zinc-300 dark:border-zinc-800 dark:text-white dark:hover:border-zinc-700;
+		}
+
 		.prev {
 			@apply rounded-full border-1 border-zinc-200 p-2 hover:border-zinc-300 dark:border-zinc-800 dark:text-white dark:hover:border-zinc-700;
 		}
 
 		.next {
-			background-color: oklch(from var(--color-accent) l c h / 25%);
-			@apply rounded-full p-2 transition-colors not-dark:text-black;
+			&:not(:disabled) {
+				background-color: oklch(from var(--color-accent) l c h / 25%);
+			}
 
-			&:hover {
+			@apply rounded-full bg-zinc-200 p-2 transition-colors not-dark:text-black disabled:cursor-not-allowed dark:bg-zinc-900;
+
+			&:not(:disabled):hover {
 				background-color: oklch(from var(--color-accent) l c h / 50%);
 			}
 		}
