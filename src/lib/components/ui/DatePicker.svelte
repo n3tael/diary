@@ -35,7 +35,7 @@
 	@reference "$styles";
 
 	.date-picker :global {
-		@apply flex w-max items-center gap-2 rounded-md border-2 border-zinc-200 text-sm dark:border-zinc-800;
+		@apply flex w-max items-center gap-2 rounded-md border-1 border-zinc-200 text-sm dark:border-zinc-800;
 
 		.icon {
 			@apply rounded-none bg-zinc-200 p-2 dark:bg-zinc-800;
@@ -46,7 +46,7 @@
 		}
 
 		input[type='date'] {
-			@apply rounded-md invalid:bg-red-200 focus:outline-0 dark:invalid:bg-red-950;
+			@apply rounded-sm invalid:bg-red-200 focus:outline-0 dark:invalid:bg-red-950;
 		}
 	}
 </style>

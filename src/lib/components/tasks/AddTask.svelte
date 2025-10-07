@@ -11,12 +11,14 @@
 
 	let form = $state<HTMLFormElement>();
 
-	let subjectId = $state(0);
-	let text = $state('');
-	let date = $state('');
-	let deadline = $state<string | undefined>(undefined);
+	let subjectId = $state<number>(0);
+	let text = $state<string>();
+	let date = $state<string>();
+	let deadline = $state<string>();
 
-	function addTask() {
+	function addTask(e: MouseEvent) {
+		e.preventDefault();
+
 		tasklist.update((ts) => [
 			...ts,
 			{

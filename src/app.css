@@ -61,7 +61,7 @@ h1 {
 
 input[type='text'],
 select {
-	@apply dark:bg-dark rounded-lg border-1 border-zinc-300 bg-white p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 focus:outline-0 dark:border-zinc-800 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
+	@apply dark:bg-dark rounded-lg border-1 border-zinc-300 bg-white p-1 px-2 transition-colors invalid:border-red-300 invalid:bg-red-200 hover:border-zinc-400 focus:border-zinc-400 invalid:hover:border-red-400 invalid:focus:border-red-400 focus:outline-0 dark:border-zinc-800 dark:invalid:border-red-900 dark:invalid:bg-red-950 dark:invalid:hover:border-red-800 dark:invalid:focus:border-red-800 dark:hover:border-zinc-700 dark:focus:border-zinc-700;
 }
 
 button {
