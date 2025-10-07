@@ -31,7 +31,8 @@
 			"selectors": ["countPlural"],
 			"match": {
 				"countPlural=one": "залишився {count} день",
-				"countPlural=other": "залишилося {count} дні"
+				"countPlural=few": "залишилося {count} дні",
+				"countPlural=many": "залишилося {count} днів"
 			}
 		}
 	],

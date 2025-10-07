@@ -11,6 +11,7 @@
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
 	import { getLocale } from '$lib/paraglide/runtime';
 	import { m } from '$lib/paraglide/messages.js';
+	import { SvelteDate } from 'svelte/reactivity';
 
 	let {
 		id,
@@ -38,6 +39,21 @@
 			day: '2-digit',
 			month: 'long'
 		}).format(date);
+
+	let nowUTCUnixDate = () => Date.now() - new Date().getTimezoneOffset() * (1000 * 60);
+
+	let now = new SvelteDate(nowUTCUnixDate());
+	let days_remain = $derived((new Date(deadline || 0).getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+	$effect(() => {
+		const interval = setInterval(() => {
+			now.setTime(nowUTCUnixDate());
+		}, 60000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	});
 </script>
 
 <div class={['task', done ? 'done' : null, editing ? 'editing' : null]}>
@@ -89,11 +105,7 @@
 			{#if deadline}
 				<Minus size="16" strokeWidth="1" />
 				<p>{formatDate(new Date(deadline))}</p>
-				{#if !done}
-					{@const days_remain =
-						(new Date(deadline).getTime() - new Date().getTime()) /
-						(1000 * 60 * 60 * 24)}
-					{#if days_remain <= 3}
+				{#if !done && days_remain <= 3 && new Date(nowUTCUnixDate()) > new Date(date)}
 						<span
 							class={[
 								'warning',
@@ -112,7 +124,6 @@
 									? m.task_deadline_less_than_day_left()
 									: m.task_deadline_expired()}
 						</span>
-					{/if}
 				{/if}
 			{/if}
 		</div>
